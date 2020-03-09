@@ -2,7 +2,7 @@
 
 ## 01 - Introduction aux bases de données 
 
-[X] *Créer une base de données wild_db_quest et se déplacer dessus.*
+- *Créer une base de données wild_db_quest et se déplacer dessus.*
 ```SQL
 CREATE DATABASE wild_db_quest;
 ```
