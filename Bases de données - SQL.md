@@ -217,3 +217,163 @@ SELECT * FROM school
 |  6 | Koldovstoretz                                |      125 | Russia         |
 +----+----------------------------------------------+----------+----------------+
 ```
+
+## 04 - Les bases de la modélisation
+
+*Énoncé :
+Chaque potion que tu vas créer a un nom. Les potions sont constituées d’un mélange d’ingrédients, qui ont chacun un nom. 
+
+Ça fait beaucoup d’informations à retenir. Pour ne rien oublier, tu aimerais stocker en base de données quels ingrédients sont nécessaires pour chaque potion. Prends un papier et un crayon, et dessine le schéma permettant de modéliser cette problématique.*
+
+https://drive.google.com/open?id=1PpKFAkJ7HCEyZGocEggjVUcEQMtj554o
+
+## 05 - Les jointures
+
+- *Modifie la table wizard afin qu’elle corresponde exactement au schéma ci-dessous, et vide là également de tout contenu (TRUNCATE ou DELETE).*
+```SQL
+ALTER TABLE wizard 
+DROP birthday;
+
+ALTER TABLE wizard 
+DROP birth_place;
+
+ALTER TABLE wizard 
+DROP biography;
+
+ALTER TABLE wizard 
+DROP is_muggle;
+
+ALTER TABLE wizard
+MODIFY firstname VARCHAR(80);
+
+ALTER TABLE wizard
+MODIFY lastname VARCHAR(80);
+```
+
+- *Crée les tables player et team comme indiqué sur la modélisation ci-dessous (noms et types des champs), en prenant soin de déclarer correctement les clés étrangères.*
+```SQL
+CREATE TABLE wild_db_quest.player ( 
+id INT PRIMARY KEY AUTO_INCREMENT, 
+wizard_id INT, 
+team_id INT, 
+role VARCHAR(50), 
+enrollment_date DATE, 
+CONSTRAINT fk_wizard_player 
+FOREIGN KEY (wizard_id) 
+REFERENCES wizard(id)); 
+
+CREATE TABLE wild_db_quest.team ( 
+id INT NOT NULL AUTO_INCREMENT, 
+name VARCHAR(80),
+PRIMARY KEY (id));
+
+
+ALTER TABLE player 
+ADD CONSTRAINT fk_player_team 
+FOREIGN KEY (team_id) 
+REFERENCES team(id); 
+```
+
+- *Charge ensuite dans ta BDD ce fichier SQL et vérifie que tout s’est bien passé.*
+```SQL
+SELECT * FROM wizard LIMIT 0,10;
+SELECT * FROM player LIMIT 0,10;
+SELECT * FROM team LIMIT 0,10;
+```
+```
++----+-----------+----------+
+| id | firstname | lastname |
++----+-----------+----------+
+|  1 | harry     | potter   |
+|  2 | hermione  | granger  |
+|  3 | lily      | potter   |
+|  4 | ron       | weasley  |
+|  5 | ginny     | weasley  |
+|  6 | fred      | weasley  |
+|  7 | george    | weasley  |
+|  8 | arthur    | weasley  |
+|  9 | molly     | weasley  |
+| 10 | drago     | malefoy  |
++----+-----------+----------+
+
++----+-----------+---------+--------+-----------------+
+| id | wizard_id | team_id | role   | enrollment_date |
++----+-----------+---------+--------+-----------------+
+|  1 |         1 |       4 | beater | 1995-10-09      |
+|  2 |         2 |       1 | chaser | 1995-08-17      |
+|  3 |         3 |       1 | seeker | 1994-12-03      |
+|  4 |         4 |       3 | chaser | 1995-03-24      |
+|  5 |         5 |       3 | keeper | 1997-07-16      |
+|  6 |         6 |       1 | beater | 1994-01-10      |
+|  7 |         7 |       4 | chaser | 1999-01-21      |
+|  8 |         8 |       4 | keeper | 1991-10-20      |
+| 10 |        10 |       1 | beater | 1991-08-03      |
+| 11 |        11 |       3 | beater | 1996-10-04      |
++----+-----------+---------+--------+-----------------+
+
++----+------------+
+| id | name       |
++----+------------+
+|  1 | Gryffindor |
+|  2 | Ravenclaw  |
+|  3 | Slytherin  |
+|  4 | Hufflepuff |
++----+------------+
+```
+
+***Une fois ces données correctement chargées, écris les requêtes suivantes, et poste-les dans un Gist dont tu posteras le lien en solution :***
+
+*1. Retourne les noms, prénoms, rôle et équipe de tous les joueurs, classés dans l’ordre alphabétique par équipe, puis par rôle dans l’équipe, puis par nom de famille, puis par prénom.*
+```SQL
+SELECT firstname, lastname, role, name FROM player 
+JOIN wizard ON wizard.id=player.wizard_id
+JOIN team ON team.id=player.team_id
+ORDER BY name, role, lastname, firstname;
+```
+```
++-----------+------------+--------+------------+
+| firstname | lastname   | role   | name       |
++-----------+------------+--------+------------+
+| drago     | malefoy    | beater | Gryffindor |
+| fred      | weasley    | beater | Gryffindor |
+| hermione  | granger    | chaser | Gryffindor |
+| lily      | potter     | seeker | Gryffindor |
+| harry     | potter     | beater | Hufflepuff |
+| george    | weasley    | chaser | Hufflepuff |
+| arthur    | weasley    | keeper | Hufflepuff |
+| tom       | j├â┬®dusor | beater | Ravenclaw  |
+| severus   | rogue      | chaser | Ravenclaw  |
+| dudley    | dursley    | seeker | Ravenclaw  |
+| albus     | dumbledore | beater | Slytherin  |
+| ron       | weasley    | chaser | Slytherin  |
+| ginny     | weasley    | keeper | Slytherin  |
++-----------+------------+--------+------------+
+```
+
+*2. Retourne uniquement les prénom et nom des joueurs ayant le rôle de seeker (attrapeur), classés par ordre alphabétique de nom puis prénom*
+```SQL
+SELECT firstname, lastname FROM player
+JOIN wizard ON wizard.id=player.wizard_id
+WHERE role = 'seeker'
+ORDER BY lastname, firstname;
+```
+```
++-----------+----------+
+| firstname | lastname |
++-----------+----------+
+| dudley    | dursley  |
+| lily      | potter   |
++-----------+----------+
+```
+*3. Retourne la liste de tous les sorciers qui ne pratiquent pas le quidditch.*
+```SQL
+SELECT * FROM wizard 
+WHERE NOT EXISTS (SELECT * FROM player WHERE wizard_id = wizard.id);
+```
+```
++----+-----------+----------+
+| id | firstname | lastname |
++----+-----------+----------+
+|  9 | molly     | weasley  |
++----+-----------+----------+
+```
