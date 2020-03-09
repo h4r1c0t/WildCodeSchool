@@ -1,4 +1,6 @@
-# 01 - Introduction aux bases de données 
+# Les bases de données - SQL
+
+## 01 - Introduction aux bases de données 
 
 - *Créer une base de données wild_db_quest et se déplacer dessus.
 ```SQL
@@ -34,7 +36,7 @@ CREATE TABLE `wild_db_quest`.`school` (
 
 - *Poster une capture d’écran montrant la sortie de ces deux commandes.
 
-# 02 - Récupérer des informations avec SELECT
+## 02 - Récupérer des informations avec SELECT
 
 - *Récupère tous les champs pour les sorciers nés entre 1975 et 1985
 ```SQL
@@ -99,4 +101,119 @@ LIMIT 0, 1;
 +-----------+------------+------------+
 ```
 
+## 03 - Manipulation des données
 
+- *Insère dans la table school les données suivantes : 
+```
+|            name                             |      country     | capacity |
+|.............................................|..................|..........|
+|Beauxbatons Academy of Magic                 | France           | 550      |
+|Castelobruxo                                 | Brazil           | 380      |
+|Durmstrang Institute                         | Norway           | 570      |
+|Hogwarts School of Witchcraft and Wizardry   | United Kingdom   | 450      |
+|Ilvermorny School of Witchcraft and Wizardry | USA              | 300      |
+|Koldovstoretz                                | Russia           | 125      |
+|Mahoutokoro School of Magic                  | Japan            | 800      |
+|Uagadou School of Magic                      | Uganda           | 350      |
+```
+```SQL
+INSERT INTO `wild_db_quest`.`school` (`name`, `country`, `capacity`)
+VALUES 
+('Beauxbatons Academy of Magic', 'France', 550), 
+('Castelobruxo', 'Brazil', 380),
+('Durmstrang Institute', 'Norway', 570),
+('Hogwarts School of Witchcraft and Wizardry', 'United Kingdom', 450),
+('Ilvermorny School of Witchcraft and Wizardry', 'USA', 300),
+('Koldovstoretz', 'Russia', 125),
+('Mahoutokoro School of Magic', 'Japan', 800),
+('Uagadou School of Magic', 'Uganda', 350);
+```
+```
++----+----------------------------------------------+----------+----------------+
+| id | name                                         | capacity | country        |
++----+----------------------------------------------+----------+----------------+
+|  1 | Beauxbatons Academy of Magic                 |      550 | France         |
+|  2 | Castelobruxo                                 |      380 | Brazil         |
+|  3 | Durmstrang Institute                         |      570 | Norway         |
+|  4 | Hogwarts School of Witchcraft and Wizardry   |      450 | United Kingdom |
+|  5 | Ilvermorny School of Witchcraft and Wizardry |      300 | USA            |
+|  6 | Koldovstoretz                                |      125 | Russia         |
+|  7 | Mahoutokoro School of Magic                  |      800 | Japan          |
+|  8 | Uagadou School of Magic                      |      350 | Uganda         |
++----+----------------------------------------------+----------+----------------+
+```
+
+- *“Durmstrang Institute” est en réalité en Suède (Sweden), modifie son pays.
+```SQL
+UPDATE school 
+SET country = 'Sweden' 
+WHERE name = 'Durmstrang Institute';
+```
+```
++----+----------------------------------------------+----------+----------------+
+| id | name                                         | capacity | country        |
++----+----------------------------------------------+----------+----------------+
+|  1 | Beauxbatons Academy of Magic                 |      550 | France         |
+|  2 | Castelobruxo                                 |      380 | Brazil         |
+|  3 | Durmstrang Institute                         |      570 | Sweden         |
+|  4 | Hogwarts School of Witchcraft and Wizardry   |      450 | United Kingdom |
+|  5 | Ilvermorny School of Witchcraft and Wizardry |      300 | USA            |
+|  6 | Koldovstoretz                                |      125 | Russia         |
+|  7 | Mahoutokoro School of Magic                  |      800 | Japan          |
+|  8 | Uagadou School of Magic                      |      350 | Uganda         |
++----+----------------------------------------------+----------+----------------+
+```
+
+- *“Mahoutokoro School of Magic” passe à une capacité de 700
+```SQL
+UPDATE school 
+SET capacity = 700 
+WHERE name = 'Mahoutokoro School of Magic';
+```
+```
++----+----------------------------------------------+----------+----------------+
+| id | name                                         | capacity | country        |
++----+----------------------------------------------+----------+----------------+
+|  1 | Beauxbatons Academy of Magic                 |      550 | France         |
+|  2 | Castelobruxo                                 |      380 | Brazil         |
+|  3 | Durmstrang Institute                         |      570 | Sweden         |
+|  4 | Hogwarts School of Witchcraft and Wizardry   |      450 | United Kingdom |
+|  5 | Ilvermorny School of Witchcraft and Wizardry |      300 | USA            |
+|  6 | Koldovstoretz                                |      125 | Russia         |
+|  7 | Mahoutokoro School of Magic                  |      700 | Japan          |
+|  8 | Uagadou School of Magic                      |      350 | Uganda         |
++----+----------------------------------------------+----------+----------------+
+```
+
+- *Supprime en une seule requête toutes les écoles comportant “Magic” dans leur nom (il y en a 3). Tu peux t’aider du mot clé LIKE.
+```SQL
+DELETE FROM school 
+WHERE name LIKE '%Magic%';
+```
+```
++----+----------------------------------------------+----------+----------------+
+| id | name                                         | capacity | country        |
++----+----------------------------------------------+----------+----------------+
+|  2 | Castelobruxo                                 |      380 | Brazil         |
+|  3 | Durmstrang Institute                         |      570 | Sweden         |
+|  4 | Hogwarts School of Witchcraft and Wizardry   |      450 | United Kingdom |
+|  5 | Ilvermorny School of Witchcraft and Wizardry |      300 | USA            |
+|  6 | Koldovstoretz                                |      125 | Russia         |
++----+----------------------------------------------+----------+----------------+
+```
+
+- *Ensuite, affiche via une requête SELECT toutes les données de la table school et colle également le résultat dans le Gist.
+```SQL
+SELECT * FROM school
+```
+```
++----+----------------------------------------------+----------+----------------+
+| id | name                                         | capacity | country        |
++----+----------------------------------------------+----------+----------------+
+|  2 | Castelobruxo                                 |      380 | Brazil         |
+|  3 | Durmstrang Institute                         |      570 | Sweden         |
+|  4 | Hogwarts School of Witchcraft and Wizardry   |      450 | United Kingdom |
+|  5 | Ilvermorny School of Witchcraft and Wizardry |      300 | USA            |
+|  6 | Koldovstoretz                                |      125 | Russia         |
++----+----------------------------------------------+----------+----------------+
+```
