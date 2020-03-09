@@ -42,6 +42,7 @@ CREATE TABLE `wild_db_quest`.`school` (
 SELECT * FROM wizard 
 WHERE birthday BETWEEN '1975-01-01' AND '1985-12-31'; 
 ```
+```
 +----+-----------+----------+------------+-------------+---------------------------------------+-----------+
 | id | firstname | lastname | birthday   | birth_place | biography                             | is_muggle |
 +----+-----------+----------+------------+-------------+---------------------------------------+-----------+
@@ -54,11 +55,13 @@ WHERE birthday BETWEEN '1975-01-01' AND '1985-12-31';
 | 10 | drago     | malefoy  | 1980-06-05 |             |                                       |         0 |
 | 14 | dudley    | dursley  | 1980-06-23 |             | Cousin d'Harry                        |         1 |
 +----+-----------+----------+------------+-------------+---------------------------------------+-----------+
+```
 
 > *Le prénom uniquement des sorciers dont le prénom commence par la lettre ‘H’
 ```SQL
 SELECT firstname FROM wizard
 WHERE firstname LIKE 'H%';
+```
 ```
 +-----------+
 | firstname |
@@ -66,6 +69,7 @@ WHERE firstname LIKE 'H%';
 | harry     |
 | hermione  |
 +-----------+
+```
 
 > *Les prénom et nom de tous les membres de la famille ‘Potter’, classés par ordre de prénom
 ```SQL
@@ -73,12 +77,14 @@ SELECT firstname, lastname FROM wizard
 WHERE lastname = 'potter'
 ORDER BY firstname;
 ```
+```
 +-----------+----------+
 | firstname | lastname |
 +-----------+----------+
 | harry     | potter   |
 | lily      | potter   |
 +-----------+----------+
+```
 
 > *Le prénom, nom et date de naissance du plus vieux sorcier (doit fonctionner quelque soit le contenu de la table)
 ```SQL
@@ -86,9 +92,12 @@ SELECT firstname, lastname, birthday FROM wizard
 ORDER BY birthday ASC 
 LIMIT 0, 1;
 ``` 
+```
 +-----------+------------+------------+
 | firstname | lastname   | birthday   |
 +-----------+------------+------------+
 | albus     | dumbledore | 1881-07-01 |
 +-----------+------------+------------+
+```
+
 
