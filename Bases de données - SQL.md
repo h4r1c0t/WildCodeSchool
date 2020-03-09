@@ -2,11 +2,11 @@
 
 ## 01 - Introduction aux bases de données 
 
-- *Créer une base de données wild_db_quest et se déplacer dessus.
+- *Créer une base de données wild_db_quest et se déplacer dessus.*
 ```SQL
 CREATE DATABASE wild_db_quest;
 ```
-> *Importer le fichier SQL db.sql (cela te créera la table wizard comme indiqué dans l’exemple plus haut)
+- *Importer le fichier SQL db.sql (cela te créera la table wizard comme indiqué dans l’exemple plus haut)*
 ```SQL
 CREATE TABLE `wild_db_quest`.`wizard` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -17,10 +17,10 @@ CREATE TABLE `wild_db_quest`.`wizard` (
   `biography` TEXT NULL,
   PRIMARY KEY (`id`));
 ```
-- *Modifier la table wizard en ajoutant un champ is_muggle de type booléen, obligatoire, qui permettra d’indiquer si le sorcier est ou non un moldu. Si tu ne sais pas ce qu’est un moldu, c’est que tu en es sans doute un toi-même ! 
+- *Modifier la table wizard en ajoutant un champ is_muggle de type booléen, obligatoire, qui permettra d’indiquer si le sorcier est ou non un moldu. Si tu ne sais pas ce qu’est un moldu, c’est que tu en es sans doute un toi-même !* 
 
 
-- *Créer la table school, contenant les champs :
+- *Créer la table school, contenant les champs :*
 id (clé primaire, entier auto-incrémenté)name (chaîne de caractères de longueur 100, obligatoire)capacity (entier, non obligatoire)country (chaîne de caractères de longueur 255, obligatoire)
 
 ```SQL
@@ -32,13 +32,13 @@ CREATE TABLE `wild_db_quest`.`school` (
 	PRIMARY KEY (`id`));
 ```
 
-- *Exécuter les commandes SHOW TABLES et faire un DESCRIBE sur les tables wizard et school.
+- *Exécuter les commandes SHOW TABLES et faire un DESCRIBE sur les tables wizard et school.*
 
-- *Poster une capture d’écran montrant la sortie de ces deux commandes.
+- *Poster une capture d’écran montrant la sortie de ces deux commandes.*
 
 ## 02 - Récupérer des informations avec SELECT
 
-- *Récupère tous les champs pour les sorciers nés entre 1975 et 1985
+- *Récupère tous les champs pour les sorciers nés entre 1975 et 1985*
 ```SQL
 SELECT * FROM wizard 
 WHERE birthday BETWEEN '1975-01-01' AND '1985-12-31'; 
@@ -58,7 +58,7 @@ WHERE birthday BETWEEN '1975-01-01' AND '1985-12-31';
 +----+-----------+----------+------------+-------------+---------------------------------------+-----------+
 ```
 
-- *Le prénom uniquement des sorciers dont le prénom commence par la lettre ‘H’
+- *Le prénom uniquement des sorciers dont le prénom commence par la lettre ‘H’*
 ```SQL
 SELECT firstname FROM wizard
 WHERE firstname LIKE 'H%';
@@ -72,7 +72,7 @@ WHERE firstname LIKE 'H%';
 +-----------+
 ```
 
-- *Les prénom et nom de tous les membres de la famille ‘Potter’, classés par ordre de prénom
+- *Les prénom et nom de tous les membres de la famille ‘Potter’, classés par ordre de prénom*
 ```SQL
 SELECT firstname, lastname FROM wizard
 WHERE lastname = 'potter'
@@ -87,7 +87,7 @@ ORDER BY firstname;
 +-----------+----------+
 ```
 
-- *Le prénom, nom et date de naissance du plus vieux sorcier (doit fonctionner quelque soit le contenu de la table)
+- *Le prénom, nom et date de naissance du plus vieux sorcier (doit fonctionner quelque soit le contenu de la table)*
 ```SQL
 SELECT firstname, lastname, birthday FROM wizard
 ORDER BY birthday ASC 
@@ -103,7 +103,7 @@ LIMIT 0, 1;
 
 ## 03 - Manipulation des données
 
-- *Insère dans la table school les données suivantes : 
+- *Insère dans la table school les données suivantes :*
 ```
 |            name                             |      country     | capacity |
 |.............................................|..................|..........|
@@ -143,7 +143,7 @@ VALUES
 +----+----------------------------------------------+----------+----------------+
 ```
 
-- *“Durmstrang Institute” est en réalité en Suède (Sweden), modifie son pays.
+- *“Durmstrang Institute” est en réalité en Suède (Sweden), modifie son pays.*
 ```SQL
 UPDATE school 
 SET country = 'Sweden' 
@@ -164,7 +164,7 @@ WHERE name = 'Durmstrang Institute';
 +----+----------------------------------------------+----------+----------------+
 ```
 
-- *“Mahoutokoro School of Magic” passe à une capacité de 700
+- *“Mahoutokoro School of Magic” passe à une capacité de 700*
 ```SQL
 UPDATE school 
 SET capacity = 700 
@@ -185,7 +185,7 @@ WHERE name = 'Mahoutokoro School of Magic';
 +----+----------------------------------------------+----------+----------------+
 ```
 
-- *Supprime en une seule requête toutes les écoles comportant “Magic” dans leur nom (il y en a 3). Tu peux t’aider du mot clé LIKE.
+- *Supprime en une seule requête toutes les écoles comportant “Magic” dans leur nom (il y en a 3). Tu peux t’aider du mot clé LIKE.*
 ```SQL
 DELETE FROM school 
 WHERE name LIKE '%Magic%';
@@ -202,7 +202,7 @@ WHERE name LIKE '%Magic%';
 +----+----------------------------------------------+----------+----------------+
 ```
 
-- *Ensuite, affiche via une requête SELECT toutes les données de la table school et colle également le résultat dans le Gist.
+- *Ensuite, affiche via une requête SELECT toutes les données de la table school et colle également le résultat dans le Gist.*
 ```SQL
 SELECT * FROM school
 ```
