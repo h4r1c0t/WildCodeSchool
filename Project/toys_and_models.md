@@ -150,3 +150,29 @@ SELECT * FROM products LIMIT 0,5;
 | S10_4757    | 1972 Alfa Romeo GTA                   | Classic Cars | 1:10         | Motor City Art Classics  | Features include: Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.                                                                                                                                                                                                                                                                                                                                               |            3252 |    85.68 | 136.00 |
 +-------------+---------------------------------------+--------------+--------------+--------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+----------+--------+
 ```
+
+## Requêtes: 
+### Requête n°2
+```SQL
+-- TunrOver based on orders
+SELECT offices.country, (priceEach * quantityOrdered) AS turnOver -- calc the turn over
+FROM orderdetails -- select usefull colomn on orderdetails and product. 
+-- WHERE orderDate >= 
+JOIN orders ON orders.orderNumber = orderdetails.orderNumber
+JOIN customers ON customers.customerNumber = orders.customerNumber
+JOIN employees ON employees.employeeNumber = customers.salesRepEmployeeNumber
+JOIN offices ON offices.officeCode = employees.officeCode
+GROUP BY offices.country;
+
+
+-- TurnOver based on payed orders
+SELECT offices.country, payments.amount AS turnOver -- calc the turn over
+FROM orderdetails -- select usefull colomn on orderdetails and product. 
+-- WHERE orderDate >= 
+JOIN orders ON orders.orderNumber = orderdetails.orderNumber
+JOIN customers ON customers.customerNumber = orders.customerNumber
+JOIN payments ON payments.customerNumber = customers.customerNumber
+JOIN employees ON employees.employeeNumber = customers.salesRepEmployeeNumber
+JOIN offices ON offices.officeCode = employees.officeCode
+GROUP BY offices.country;
+```
