@@ -167,6 +167,17 @@ JOIN employees ON employees.employeeNumber = customers.salesRepEmployeeNumber
 JOIN offices ON offices.officeCode = employees.officeCode
 GROUP BY offices.country;
 ```
+```
++-----------+----------+
+| country   | turnOver |
++-----------+----------+
+| France    |  3138.46 |
+| USA       |  3213.00 |
+| Australia |  3449.26 |
+| UK        |  5571.80 |
+| Japan     |  6445.89 |
++-----------+----------+
+```
 
 **Chiffre d'affaire sur les commandes payées (amount)**
 Ce chiffre d'affaire et le chiffre d'affaire réel au moment où le calcul est fait.
@@ -182,4 +193,15 @@ JOIN payments ON payments.customerNumber = customers.customerNumber
 JOIN employees ON employees.employeeNumber = customers.salesRepEmployeeNumber
 JOIN offices ON offices.officeCode = employees.officeCode
 GROUP BY offices.country;
+```
+```SQL
++-----------+----------+
+| country   | turnOver |
++-----------+----------+
+| France    |  6066.78 |
+| USA       | 14191.12 |
+| Australia | 45864.03 |
+| UK        | 50218.95 |
+| Japan     | 44380.15 |
++-----------+----------+
 ```
