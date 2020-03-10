@@ -153,7 +153,7 @@ SELECT * FROM products LIMIT 0,5;
 
 ## Requêtes: 
 ### Requête n°2
-**Chiffre d'affaire sur les commandes (prix unitaire * quantité)
+**Chiffre d'affaire sur les commandes (prix unitaire * quantité)**
 ```SQL
 -- TunrOver based on orders
 SELECT offices.country, (priceEach * quantityOrdered) AS turnOver -- calc the turn over
@@ -166,7 +166,7 @@ JOIN offices ON offices.officeCode = employees.officeCode
 GROUP BY offices.country;
 ```
 
-**Chiffre d'affaire sur les commandes payées (amount)
+**Chiffre d'affaire sur les commandes payées (amount)**
 ```SQL
 -- TurnOver based on payed orders
 SELECT offices.country, payments.amount AS turnOver -- calc the turn over
