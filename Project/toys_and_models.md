@@ -154,6 +154,8 @@ SELECT * FROM products LIMIT 0,5;
 ## Requêtes: 
 ### Requête n°2
 **Chiffre d'affaire sur les commandes (prix unitaire * quantité)**
+Ce chiffre d'affaire est le chiffre d'affaire attendu sur aucune commande n'est annulée ou impayée. 
+*Il faut encore voir pour faire le calcul sur les 2 derniers mois*
 ```SQL
 -- TunrOver based on orders
 SELECT offices.country, (priceEach * quantityOrdered) AS turnOver -- calc the turn over
@@ -167,11 +169,13 @@ GROUP BY offices.country;
 ```
 
 **Chiffre d'affaire sur les commandes payées (amount)**
+Ce chiffre d'affaire et le chiffre d'affaire réel au moment où le calcul est fait.
+*Il faut encore voir pour faire le calcul sur les 2 derniers mois*
 ```SQL
 -- TurnOver based on payed orders
 SELECT offices.country, payments.amount AS turnOver -- calc the turn over
 FROM orderdetails -- select usefull colomn on orderdetails and product. 
--- WHERE orderDate >= 
+-- WHERE orderDate BETWEEN mois actuel - 2 AND mois actuel
 JOIN orders ON orders.orderNumber = orderdetails.orderNumber
 JOIN customers ON customers.customerNumber = orders.customerNumber
 JOIN payments ON payments.customerNumber = customers.customerNumber
