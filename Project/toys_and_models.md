@@ -194,7 +194,7 @@ JOIN employees ON employees.employeeNumber = customers.salesRepEmployeeNumber
 JOIN offices ON offices.officeCode = employees.officeCode
 GROUP BY offices.country;
 ```
-```SQL
+```
 +-----------+----------+
 | country   | turnOver |
 +-----------+----------+
