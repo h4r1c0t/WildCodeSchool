@@ -158,7 +158,7 @@ SELECT * FROM products LIMIT 0,5;
 -- TunrOver based on orders
 SELECT offices.country, (priceEach * quantityOrdered) AS turnOver -- calc the turn over
 FROM orderdetails -- select usefull colomn on orderdetails and product. 
--- WHERE orderDate >= 
+-- WHERE orderDate BETWEEN mois actuel - 2 AND mois actuel
 JOIN orders ON orders.orderNumber = orderdetails.orderNumber
 JOIN customers ON customers.customerNumber = orders.customerNumber
 JOIN employees ON employees.employeeNumber = customers.salesRepEmployeeNumber
