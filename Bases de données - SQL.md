@@ -221,9 +221,9 @@ SELECT * FROM school
 ## 04 - Les bases de la modélisation
 
 *Énoncé :
-Chaque potion que tu vas créer a un nom. Les potions sont constituées d’un mélange d’ingrédients, qui ont chacun un nom. 
+Chaque potion que tu vas créer a un nom. Les potions sont constituées d’un mélange d’ingrédients, qui ont chacun un nom.* 
 
-Ça fait beaucoup d’informations à retenir. Pour ne rien oublier, tu aimerais stocker en base de données quels ingrédients sont nécessaires pour chaque potion. Prends un papier et un crayon, et dessine le schéma permettant de modéliser cette problématique.*
+*Ça fait beaucoup d’informations à retenir. Pour ne rien oublier, tu aimerais stocker en base de données quels ingrédients sont nécessaires pour chaque potion. Prends un papier et un crayon, et dessine le schéma permettant de modéliser cette problématique.*
 
 https://drive.google.com/open?id=1PpKFAkJ7HCEyZGocEggjVUcEQMtj554o
 
