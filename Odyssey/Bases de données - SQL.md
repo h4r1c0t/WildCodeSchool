@@ -380,7 +380,7 @@ WHERE NOT EXISTS (SELECT * FROM player WHERE wizard_id = wizard.id);
 
 ## 06 - SQL avancé
 
-1. *Retourne le nom des équipes et le nombre de joueurs par équipe, le tout classé par nombre de joueurs par équipe, de la plus nombreuse à la moins nombreuse.*
+*1. Retourne le nom des équipes et le nombre de joueurs par équipe, le tout classé par nombre de joueurs par équipe, de la plus nombreuse à la moins nombreuse.*
 ```SQL
 SELECT name, count(player.id) FROM team 
 JOIN player ON player.team_id = team.id 
@@ -398,7 +398,7 @@ ORDER BY count(player.id) DESC;
 +------------+------------------+
 ```
 
-2. *Retourne uniquement les noms des équipes complètes (ayant 14 joueurs ou plus, c’est-à- dire 7 joueurs et 7 remplaçants minimum), classés par ordre alphabétique.*
+*2. Retourne uniquement les noms des équipes complètes (ayant 14 joueurs ou plus, c’est-à- dire 7 joueurs et 7 remplaçants minimum), classés par ordre alphabétique.*
 ```SQL
 SELECT name, count(player.id) FROM team 
 JOIN player ON player.team_id = team.id 
@@ -416,7 +416,7 @@ ORDER BY name;
 +------------+------------------+
 ```
 
-***3.*** *L’entraîneur des Gryffondor est superstitieux, son jour préféré est le lundi. Retourne la liste des joueurs de son équipe qui ont été enrôlés un lundi (il souhaite les faire jouer en priorité), et classe les résultats par date d’enrôlement chronologique.*
+*3. L’entraîneur des Gryffondor est superstitieux, son jour préféré est le lundi. Retourne la liste des joueurs de son équipe qui ont été enrôlés un lundi (il souhaite les faire jouer en priorité), et classe les résultats par date d’enrôlement chronologique.*
 ```SQL
 SELECT id, enrollment_date FROM player 
 WHERE DAYOFWEEK(enrollment_date) = 2 
