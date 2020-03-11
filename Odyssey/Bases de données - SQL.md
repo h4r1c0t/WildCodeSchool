@@ -377,3 +377,67 @@ WHERE NOT EXISTS (SELECT * FROM player WHERE wizard_id = wizard.id);
 |  9 | molly     | weasley  |
 +----+-----------+----------+
 ```
+
+## 06 - SQL avancé
+
+1. *Retourne le nom des équipes et le nombre de joueurs par équipe, le tout classé par nombre de joueurs par équipe, de la plus nombreuse à la moins nombreuse.*
+```SQL
+SELECT name, count(player.id) FROM team 
+JOIN player ON player.team_id = team.id 
+GROUP BY team.name 
+ORDER BY count(player.id) DESC;
+```
+```
++------------+------------------+
+| name       | count(player.id) |
++------------+------------------+
+| Gryffindor |               36 |
+| Slytherin  |               21 |
+| Ravenclaw  |               15 |
+| Hufflepuff |               12 |
++------------+------------------+
+```
+
+2. *Retourne uniquement les noms des équipes complètes (ayant 14 joueurs ou plus, c’est-à- dire 7 joueurs et 7 remplaçants minimum), classés par ordre alphabétique.*
+```SQL
+SELECT name, count(player.id) FROM team 
+JOIN player ON player.team_id = team.id 
+GROUP BY name 
+HAVING count(player.id) > 13 
+ORDER BY name;
+```
+```
++------------+------------------+
+| name       | count(player.id) |
++------------+------------------+
+| Gryffindor |               36 |
+| Ravenclaw  |               15 |
+| Slytherin  |               21 |
++------------+------------------+
+```
+
+3. *L’entraîneur des Gryffondor est superstitieux, son jour préféré est le lundi. Retourne la liste des joueurs de son équipe qui ont été enrôlés un lundi (il souhaite les faire jouer en priorité), et classe les résultats par date d’enrôlement chronologique.*
+```SQL
+SELECT id, enrollment_date FROM player 
+WHERE DAYOFWEEK(enrollment_date) = 2 
+ORDER BY enrollment_date ASC; 
+```
+```
++----+-----------------+
+| id | enrollment_date |
++----+-----------------+
+| 44 | 1991-03-11      |
+| 88 | 1991-07-08      |
+| 82 | 1991-08-26      |
+| 12 | 1992-01-27      |
+| 39 | 1992-02-17      |
+| 90 | 1993-01-04      |
+| 30 | 1993-08-30      |
+|  6 | 1994-01-10      |
+| 20 | 1995-04-24      |
+|  1 | 1995-10-09      |
+| 50 | 1996-12-02      |
+| 25 | 1996-12-16      |
+| 41 | 1999-10-25      |
++----+-----------------+
+```
