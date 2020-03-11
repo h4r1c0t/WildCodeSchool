@@ -416,7 +416,7 @@ ORDER BY name;
 +------------+------------------+
 ```
 
-3. *L’entraîneur des Gryffondor est superstitieux, son jour préféré est le lundi. Retourne la liste des joueurs de son équipe qui ont été enrôlés un lundi (il souhaite les faire jouer en priorité), et classe les résultats par date d’enrôlement chronologique.*
+***3.*** *L’entraîneur des Gryffondor est superstitieux, son jour préféré est le lundi. Retourne la liste des joueurs de son équipe qui ont été enrôlés un lundi (il souhaite les faire jouer en priorité), et classe les résultats par date d’enrôlement chronologique.*
 ```SQL
 SELECT id, enrollment_date FROM player 
 WHERE DAYOFWEEK(enrollment_date) = 2 
