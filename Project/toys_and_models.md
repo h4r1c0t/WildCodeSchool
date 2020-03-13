@@ -205,3 +205,19 @@ GROUP BY offices.country;
 | Japan     | 44380.15 |
 +-----------+----------+
 ```
+
+
+
+## SALES 
+```SQL 
+SELECT productLine AS Category, 
+SUM(quantityOrdered) AS Quantity, 
+MONTH(orderDate) AS `Month`, 
+YEAR(orderDate) AS `Year` 
+FROM toys_and_models.orderdetails 
+JOIN toys_and_models.orders ON orders.orderNumber = orderdetails.orderNumber 
+JOIN toys_and_models.products ON products.productCode = orderdetails.productCode
+WHERE MONTH(orderDate) = MONTH(CURRENT_DATE) - 1 AND YEAR(orderDate) BETWEEN YEAR(CURRENT_DATE) - 1 AND YEAR(CURRENT_DATE) 
+GROUP BY `Year`, `Category`
+ORDER BY `Year` DESC, `Category`;
+```
