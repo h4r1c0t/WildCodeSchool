@@ -1,5 +1,8 @@
 # Liste des requêtes SQL - Toys & Models
-
+``` 
+Update: 2020-03-27
+Authors: Hélène Moreau, Aleksandr Litvak & Sébastien Vanstavel
+```
 ## VENTES 
 Afficher le total des ventes par catégories pour le mois en cours et le même mois l'année précédente. 
 ```SQL
