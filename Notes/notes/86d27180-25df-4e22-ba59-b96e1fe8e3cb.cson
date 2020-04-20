@@ -1,7 +1,7 @@
 createdAt: "2020-04-20T08:18:19.778Z"
-updatedAt: "2020-04-20T12:26:31.910Z"
+updatedAt: "2020-04-20T14:26:56.235Z"
 type: "SNIPPET_NOTE"
-folder: "3d5314e2ad6aee76b0e8"
+folder: "60ac0c85ac646aa5884a"
 title: "Graph script"
 tags: []
 description: '''
@@ -49,6 +49,27 @@ snippets: [
       
       plt.show()
     '''
+  }
+  {
+    name: ""
+    mode: null
+    content: '''
+      fig, ax = plt.subplots(figsize = (10,5))
+      ax1 = plt.subplot(211) 
+      sns.barplot('Season', 'MAX_TEMPERATURE_C', data = df_weather)
+      ax1.set(xlabel='', ylabel='Températures maximales (°C)')
+      
+      ax2 = plt.subplot(212)
+      sns.barplot('Season', 'PRECIP_TOTAL_DAY_MM', data = df_weather)
+      ax2.set(xlabel='Saisons', ylabel='Total des précipitations (mm)')
+      ax3 = ax2.twinx()
+      sns.lineplot('Season', 'CLOUDCOVER_AVG_PERCENT', data = df_weather)
+      ax3.set(ylabel='Couverture nuageuse (%)')
+      
+      fig.tight_layout()
+      plt.show()
+    '''
+    linesHighlighted: []
   }
 ]
 isStarred: false
