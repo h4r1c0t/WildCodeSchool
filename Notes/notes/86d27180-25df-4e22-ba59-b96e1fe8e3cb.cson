@@ -1,10 +1,13 @@
 createdAt: "2020-04-20T08:18:19.778Z"
-updatedAt: "2020-04-20T12:04:01.358Z"
+updatedAt: "2020-04-20T12:26:31.910Z"
 type: "SNIPPET_NOTE"
 folder: "3d5314e2ad6aee76b0e8"
-title: ""
+title: "Graph script"
 tags: []
-description: ""
+description: '''
+  Graph script
+  
+'''
 snippets: [
   {
     linesHighlighted: []
