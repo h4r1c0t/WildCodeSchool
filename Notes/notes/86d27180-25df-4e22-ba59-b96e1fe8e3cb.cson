@@ -1,0 +1,52 @@
+createdAt: "2020-04-20T08:18:19.778Z"
+updatedAt: "2020-04-20T12:04:01.358Z"
+type: "SNIPPET_NOTE"
+folder: "3d5314e2ad6aee76b0e8"
+title: ""
+tags: []
+description: ""
+snippets: [
+  {
+    linesHighlighted: []
+    name: "Matplot boxplot"
+    mode: "Python"
+    content: '''
+      import matplotlib.pyplot as plt
+      import numpy as np
+      
+      np.random.seed(19680801)
+      all_data = [np.random.normal(0, std, size=100) for std in range(1, 4)]
+      labels = ['x1', 'x2', 'x3']
+      
+      fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(9, 4))
+      
+      # rectangular box plot
+      bplot1 = axes[0].boxplot(all_data,
+                               vert=True, 
+                               patch_artist=True,  
+                               labels=labels) 
+      axes[0].set_title('Rectangular box plot')
+      
+      bplot2 = axes[1].boxplot(all_data,
+                               notch=True, 
+                               vert=True, 
+                               patch_artist=True, 
+                               labels=labels) 
+      axes[1].set_title('Notched box plot')
+      
+      colors = ['pink', 'lightblue', 'lightgreen']
+      for bplot in (bplot1, bplot2):
+          for patch, color in zip(bplot['boxes'], colors):
+              patch.set_facecolor(color)
+      
+      for ax in axes:
+          ax.yaxis.grid(True)
+          ax.set_xlabel('Three separate samples')
+          ax.set_ylabel('Observed values')
+      
+      plt.show()
+    '''
+  }
+]
+isStarred: false
+isTrashed: false
