@@ -1,5 +1,5 @@
 createdAt: "2020-04-20T15:42:18.699Z"
-updatedAt: "2020-04-20T16:37:52.833Z"
+updatedAt: "2020-04-21T07:51:59.184Z"
 type: "MARKDOWN_NOTE"
 folder: "3d5314e2ad6aee76b0e8"
 title: "Expédition semaine 8"
@@ -9,14 +9,24 @@ content: '''
   ## Quêtes expédition précédente :
   [ ] [GDPR - Module 1](https://odyssey.wildcodeschool.com/quests/761/challenge)
   [ ] [06. Yuka - Partie 2](https://odyssey.wildcodeschool.com/quests/740/challenge)
+  [X] [Matplotlib - Partie 4](https://odyssey.wildcodeschool.com/quests/751/challenge)
+  [/] [Matplotlib - Partie 5](https://odyssey.wildcodeschool.com/quests/752/challenge)
+  [/] [Seaborn - 02](https://odyssey.wildcodeschool.com/quests/754/challenge)
+  
+  
+  
   ## Quêtes prioritaires :
   [X] [Pandas - Merge, Apply and Missing values](https://odyssey.wildcodeschool.com/quests/1153/challenge)
   [X] [Pandas & NumPy : Univariate linear regressions](https://odyssey.wildcodeschool.com/quests/1155/challenge)
+  
+  
   ## Quêtes secondaires :  
   [ ] [06. Yuka - Partie 2](https://odyssey.wildcodeschool.com/quests/740/challenge)
   [ ] [GDPR - Module 2](https://odyssey.wildcodeschool.com/quests/767/challenge)
   [ ] [Plotly : Interactive charts](https://odyssey.wildcodeschool.com/quests/1152/challenge)
   [ ] [Pandas Pivot tables](https://odyssey.wildcodeschool.com/quests/1154/challenge)
+  
+  
 '''
 linesHighlighted: []
 isStarred: false
