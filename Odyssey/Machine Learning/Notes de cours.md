@@ -6,7 +6,7 @@
 ### Clustering KNN (Méthode des k plus proches voisins)
 On va regarder comment sont classés les plus proches voisins pour décider de comment classer notre nouvelle observation.
 
-[Principales méthodes utilisées](/home/h4r1c0t/Github/WildCodeSchool/Odyssey/Machine Learning/Capture d’écran du 2020-04-27 14-28-01.png)
+![Principales méthodes utilisées](/home/h4r1c0t/Github/WildCodeSchool/Odyssey/Machine Learning/Capture d’écran du 2020-04-27 14-28-01.png)
 
 
 **En data analyse**, nous allons rarement créer nos propres algorythmes de machine learning.
@@ -47,26 +47,26 @@ Faire plusieurs set et tests dans les data.
 ### Accuracy
 *Parmi toutes les données, combien ont été classées correctement ?*
 **Accuracy** *= True positive / Total data*
-
+```
   |  + | -
 + | *X | X  
 - |  X | X  
-
+```
 ### Precision
 *Parmi tout ceux qui sont détecté positifs/négatifs, combien le sont vraiment ?*
-
+```
   |  + | -
 + | *X |   
 - |  X |   
-
+```
 **Precision** *= True positive /  True pos + False pos (=Positives tests)*
 ### Recal
 *Parmi les personnes positives, combien ont été détectées ?*
-
+```
   |  + | -
 + | *X | X  
 - |    |   
-
+```
 **Recall** *= True positive / True pos + False neg (=Positives data)*
 
 ### F1 Score
