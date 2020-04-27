@@ -6,7 +6,7 @@
 ### Clustering KNN (Méthode des k plus proches voisins)
 On va regarder comment sont classés les plus proches voisins pour décider de comment classer notre nouvelle observation.
 
-![Principales méthodes utilisées](/home/h4r1c0t/Github/WildCodeSchool/Odyssey/Machine Learning/Capture d’écran du 2020-04-27 14-28-01.png)
+![Principales méthodes utilisées](Odyssey/Machine Learning/Capture d’écran du 2020-04-27 14-28-01.png)
 
 
 **En data analyse**, nous allons rarement créer nos propres algorythmes de machine learning.
