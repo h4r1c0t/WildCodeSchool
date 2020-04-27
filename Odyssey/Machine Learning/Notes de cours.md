@@ -27,15 +27,18 @@ Source : [Vidéo youtube](https://www.youtube.com/watch?v=aDW44NPhNw0)
 ## Les règles d'or
 1. *Thou shalt never use your testing data for training*
 1. *Friends don't let friends use their testing data for training*
-1. *Think not that your country can do for you I'm kidding... *DON'T EVER USE YOUR TESTING DATA FOR TRAINING*
+1. *Think not that your country can do for you I'm kidding...* ***DON'T EVER USE YOUR TESTING DATA FOR TRAINING***
 
 ## K-Fold Cross Validation
 
 xxx = training set    |   *XXX* = testing set
 
 *XXX* xxx xxx xxx
+
 xxx *XXX* xxx xxx
+
 xxx xxx *XXX* xxx
+
 xxx xxx xxx *XXX*
 
 Faire plusieurs set et tests dans les data.
@@ -44,26 +47,26 @@ Faire plusieurs set et tests dans les data.
 ### Accuracy
 *Parmi toutes les données, combien ont été classées correctement ?*
 **Accuracy** *= True positive / Total data*
-```
+
   |  + | -
 + | *X | X  
 - |  X | X  
-```
+
 ### Precision
 *Parmi tout ceux qui sont détecté positifs/négatifs, combien le sont vraiment ?*
-```
+
   |  + | -
 + | *X |   
 - |  X |   
-```
+
 **Precision** *= True positive /  True pos + False pos (=Positives tests)*
 ### Recal
 *Parmi les personnes positives, combien ont été détectées ?*
-```
+
   |  + | -
 + | *X | X  
 - |    |   
-```
+
 **Recall** *= True positive / True pos + False neg (=Positives data)*
 
 ### F1 Score
@@ -92,4 +95,4 @@ High bias (deg 1)| Right (deg 2)    | High Variance (deg 6)
 `/!\` **Rules #1:** *Thou shalt never use your testing data for training*
 > Use a **cross validation set** ans after choosing your model, you can test with your testing dataset !
 
-You can also used *Grid Search Cross Validation* to test multiple regressions types. 
+You can also used *Grid Search Cross Validation* to test multiple regressions types.
