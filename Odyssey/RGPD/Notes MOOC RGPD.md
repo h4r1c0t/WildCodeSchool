@@ -37,6 +37,17 @@ Autres cas possibles grâce à la **méthode du faisceau d'indices**:
 - les conséquences pour les personnes concernées
 - l'existance de garanties appropriées (ex: chiffrement)
 
-Evolution des usages sans détournemenet de finalité : 
+Evolution des usages sans détournemenet de finalité :
 - consentement de la personne pour définir un nouvel usage des données
 - disposition du droit de l'Union et du droit de l'Etat membre
+
+## La Licéité du traitement (*= la base légale*)
+Le traitement doit être soit **expressément permis**, soit **ne pas être interdit** de manière générale.
+
+**La Licéité du traitement** *Art 6-1*
+1. **consentement** de la personne consernée : *libre, spécifique, éclairé et univoque*
+1. traitement nécessaire à l'exécution d'un contrat
+1. traitement nécessaire au respect d'une obligation légale
+1. traitement nécessaire à la sauvegarde des intérêts vitaux
+1. traitement nécessaire à l'éxecution d'une mission d'intérêt public ou relevant de l'exercice de l'autorité publique
+1. traitement nécessaire aux fins des intérêts légitimes
