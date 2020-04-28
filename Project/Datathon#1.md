@@ -5,6 +5,5 @@
 - Souhail
 - Eryck
 - Sébastien
-- ?
 
-## Sujet : 
+## Sujet :
