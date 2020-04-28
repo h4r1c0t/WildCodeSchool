@@ -49,14 +49,14 @@ Le calcul final du score nutritionnel se fait en soustrayant à la note de compo
 
 > **Les notes théoriques du score vont donc de** ***-15*** **(le plus favorable sur le plan nutritionnel)** ***à +40*** **(le plus défavorable sur le plan nutritionnel).**
 
-| Score     |           | Note |
-|-----------|-----------|------|
-| Aliments  | Boissons  |      |
-| -15 à -1  | Eaux      | A    |
-| 0 à 2     | -15 à 1   | B    |
-| 3 à 10    | 2 à 5     | C    |
-| 11 à 18   | 3 à 10    | D    |
-| 19 à 40   | 10 à 40   | E    |
+| Score     |           | Note |  Logo  
+|-----------|-----------|------|-------------------------------------------------------------------------------------------------------|
+| Aliments  | Boissons  |      |                                                                                                       |
+| -15 à -1  | Eaux      | A    |  ![LogoA](https://github.com/h4r1c0t/WildCodeSchool/blob/master/Odyssey/Pandas/Yaka%20quest/NS_A.png) |
+| 0 à 2     | -15 à 1   | B    |  ![LogoB](https://github.com/h4r1c0t/WildCodeSchool/blob/master/Odyssey/Pandas/Yaka%20quest/NS_B.png) |
+| 3 à 10    | 2 à 5     | C    |  ![LogoB](https://github.com/h4r1c0t/WildCodeSchool/blob/master/Odyssey/Pandas/Yaka%20quest/NS_C.png) |
+| 11 à 18   | 3 à 10    | D    |  ![LogoC](https://github.com/h4r1c0t/WildCodeSchool/blob/master/Odyssey/Pandas/Yaka%20quest/NS_D.png) |
+| 19 à 40   | 10 à 40   | E    |  ![LogoD](https://github.com/h4r1c0t/WildCodeSchool/blob/master/Odyssey/Pandas/Yaka%20quest/NS_E.png) |
 
 ### Le Programme National Nutrition Santé (PNNS; Hercberg, 2011)
 Le PNNS a pour finalité de promouvoir les facteurs de protection de la santé au travers de l’alimentation et de l’activité physique et de réduire l'exposition aux facteurs de risque au niveau de la population générale et des groupes à risque spécifiques.
