@@ -52,7 +52,6 @@ Le calcul final du score nutritionnel se fait en soustrayant à la note de compo
 | Score     |           | Note |
 |-----------|-----------|------|
 | Aliments  | Boissons  |      |
-|-----------|-----------|------|
 | -15 à -1  | Eaux      | A    |
 | 0 à 2     | -15 à 1   | B    |
 | 3 à 10    | 2 à 5     | C    |
