@@ -56,7 +56,7 @@ Le PNNS a pour finalité de promouvoir les facteurs de protection de la santé a
 Le PNNS dans les données :
 - **pnns_groups_1** (*229 259 NaN*)
 - **pnns_groups_2** (*226 281 NaN*)
-
+```mermaid
 Groupes                                                        | Sous-groupes                                       | Exemples
 ---------------------------------------------------------------|----------------------------------------------------|-----------------------------------------------------------------------
 **Fruits et légumes**                                          |  Fruits frais                                      |	Pommes, bananes, oranges
@@ -91,6 +91,7 @@ Groupes                                                        | Sous-groupes   
 **Boissons sucrées**                                           |	Boissons sucrées de type soda                     |	Sodas, limonades
                                                                |  Jus de fruits                                     |	Jus d’orange
 **Sel**                                                        |	Sel                                               |	Sel
+```
 
 ## 1. Importation du dataset
 
