@@ -16,32 +16,32 @@ Le calcul repose sur la prise en compte, pour chaque aliment, de 4 éléments co
 - **Composante négative** ***N*** :
 Pour chacun de ces éléments, sont attribués des points, allant de **1 à 10 en fonction de l’apport calorique**(densité énergétique) ou du contenu en graisses saturées, en sucres simples et en sel (pour 100 g d’aliment). La **composante négative N du score PNNS** est la note correspondant à la **somme des points définis pour les 4 éléments** : *cette note va donc théoriquement du plus favorable au moins favorable de 0 à 40*.
 
-Note  | Densité énergétique (KJ/100g) |  Graisses saturées (g/100g)  | Sucres simples (g/100g) | Sodium (mg/100g)
-------|-------------------------------|------------------------------|-------------------------|------------------
-   0  |                         < 335 |                         < 1  |                   < 4.5 |             < 90
-   1  |                         > 335 |                         > 1  |                   > 4.5 |             > 90
-   2  |                         > 670 |                         > 2  |                   > 9.0 |            > 180
-   3  |                        > 1005 |                         > 3  |                  > 13,5 |            > 270
-   4  |                        > 1340 |                         > 4  |                    > 18 |            > 360
-   5  |                        > 1675 |                         > 5  |                  > 22,5 |            > 450
-   6  |                        > 2010 |                         > 6  |                    > 27 |            > 540
-   7  |                        > 2345 |                         > 7  |                    > 31 |            > 630
-   8  |                        > 2680 |                         > 8  |                    > 36 |            > 720
-   9  |                        > 3015 |                         > 9  |                    > 40 |            > 810
-   10 |                        > 2350 |                         > 10 |                    > 45 |            > 900
+| Note  | Densité énergétique (KJ/100g) |  Graisses saturées (g/100g)  | Sucres simples (g/100g) | Sodium (mg/100g) |
+|-------|-------------------------------|------------------------------|-------------------------|------------------|
+|    0  |                         < 335 |                         < 1  |                   < 4.5 |             < 90 |
+|    1  |                         > 335 |                         > 1  |                   > 4.5 |             > 90 |
+|    2  |                         > 670 |                         > 2  |                   > 9.0 |            > 180 |
+|    3  |                        > 1005 |                         > 3  |                  > 13,5 |            > 270 |
+|    4  |                        > 1340 |                         > 4  |                    > 18 |            > 360 |
+|    5  |                        > 1675 |                         > 5  |                  > 22,5 |            > 450 |
+|    6  |                        > 2010 |                         > 6  |                    > 27 |            > 540 |
+|    7  |                        > 2345 |                         > 7  |                    > 31 |            > 630 |
+|    8  |                        > 2680 |                         > 8  |                    > 36 |            > 720 |
+|    9  |                        > 3015 |                         > 9  |                    > 40 |            > 810 |
+|    10 |                        > 2350 |                         > 10 |                    > 45 |            > 900 |
 
 - **Composante positive** ***P*** :
 Cette composante est calculée en fonction de la teneur de l’aliment en fruits ou légumes (et noix), en fibres et en protéines. Pour chacun de ces éléments, des points, allant de **1 à 5 sont attribués en fonction de l’apport de fruit et légumes, de fibres et de protéines** (pour 100 g d’aliment). La composante positive P du score nutritionnel est la note correspondant à la somme des points définis pour les 3 éléments : cette note va donc théoriquement **du plus favorable au moins favorable de 15 à
 0**.
 
-Note  | Fruits et légumes et noix (g/100g)  | Fibres (g/100g) AOAC  | Protéines (g/100g)
-------|-------------------------------------|-----------------------|--------------------
-   0  |                               < 40  |                < 0,9  |              < 1,6
-   1  |                               > 40  |                > 0,9  |              > 1,6
-   2  |                               > 60  |                > 1,9  |              > 3,2
-   3  |                                  -  |                > 2,8  |              > 4,8
-   4  |                                  -  |                > 3,7  |              > 6,4
-   5  |                                 80  |                > 4,7  |              > 8,0
+| Note  | Fruits et légumes et noix (g/100g)  | Fibres (g/100g) AOAC  | Protéines (g/100g) |
+|-------|-------------------------------------|-----------------------|--------------------|
+|    0  |                               < 40  |                < 0,9  |              < 1,6 |
+|    1  |                               > 40  |                > 0,9  |              > 1,6 |
+|    2  |                               > 60  |                > 1,9  |              > 3,2 |
+|    3  |                                  -  |                > 2,8  |              > 4,8 |
+|    4  |                                  -  |                > 3,7  |              > 6,4 |
+|    5  |                                 80  |                > 4,7  |              > 8,0 |
 
 - **Le Score Nutritionnel** :
 Le calcul final du score nutritionnel se fait en soustrayant à la note de composante négative N la note de la composante positive P.
