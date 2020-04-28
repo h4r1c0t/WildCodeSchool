@@ -57,40 +57,40 @@ Le PNNS dans les données :
 - **pnns_groups_1** (*229 259 NaN*)
 - **pnns_groups_2** (*226 281 NaN*)
 
-Groupes | Sous-groupes  |	Exemples
-----------|---------------|-------------
-**Fruits et légumes** |	Fruits frais  |	Pommes, bananes, oranges
-**Fruits et légumes** | Fruits secs	| Abricots secs, pruneaux
-**Fruits et légumes** | Fruits transformés  |	Compotes, fruits au sirop
-**Fruits et légumes** | Légumes | Courgettes, carottes, tomates, haricots verts, maïs doux, petit-pois
-**Fruits et légumes** | Oléagineux	Noix, amandes
-**Féculents**  |	Pain et produits de panification complets  |	Pain et biscottes complets
-  |Pain et produits de panification raffinés	Pain et biscottes blancs
-  |Produits à base d’amidon, transformés sucrés/gras	Céréales de petit-déjeuner
-  |Produits à base d’amidon, transformés salés/gras	Frites, biscuits apéritifs
+Groupes                                                        | Sous-groupes                                       | Exemples
+---------------------------------------------------------------|----------------------------------------------------|-----------------------------------------
+**Fruits et légumes**                                          |  Fruits frais                                      |	Pommes, bananes, oranges
+                                                               |  Fruits secs	                                      | Abricots secs, pruneaux
+                                                               |  Fruits transformés                                |	Compotes, fruits au sirop
+                                                               |  Légumes                                           | Courgettes, carottes, tomates, haricots verts, maïs doux, petit-pois
+                                                               |  Oléagineux	                                      | Noix, amandes
+**Féculents**                                                  |	Pain et produits de panification complets         | Pain et biscottes complets
+                                                               |  Pain et produits de panification raffinés	        | Pain et biscottes blancs
+                                                               |  Produits à base d’amidon, transformés sucrés/gras |	Céréales de petit-déjeuner
+                                                               |  Produits à base d’amidon, transformés salés/gras	| Frites, biscuits apéritifs
   |Autres féculents complets	Riz complet, blé complet
-  |Autres féculents raffinés	Riz, pâtes, pommes de terre bouillies
-**Légumineuses**  |		Lentilles, pois chiches, fèves
-**Viandes et charcuteries, produits de la pêche, œufs (VPO)**  |	Charcuterie	Saucisse, jambon, pâtés
-  |Œufs  |	Œufs
-  |Poissons gras  |	Saumon, maquereau, sardine, hareng
-  |Autres poissons, mollusques et crustacés  |	Cabillaud, bar, dorade, moules, crevettes
-  |Viande hors volaille  |	Bœuf, veau, porc, mouton, agneau, cheval, abats, gibier
-  |Volaille  |	Poulet, canard
-**Lait et produits laitiers**  |	Desserts sucrés lactés	Crèmes dessert, crèmes glacées
-  |Fromages  |	Fromages à pâte molle, pressée
-  |Lait  |	Lait demi-écrémé, lait entier
-  |Produits laitiers frais nature  |	Yaourts nature, fromages blancs
-  |Produits laitiers frais sucrés  |	Yaourts sucrés
-**Matières grasses ajoutées**  |	Beurre  |	Beurre et beurres allégés
-  |Huiles végétales riches ALA  |	Huile de colza, de noix
-  |Huiles végétales pauvres en ALA et margarines  |	Huile de tournesol, huile d’olive
-  |Sauces, crèmes fraîches et condiments  |	Mayonnaise, ketchup, crème fraîche
-**Produits sucrés ou sucrés et gras**  |	Produits sucrés ou sucrés et gras  |	Confiture, viennoiseries, biscuits, pâtisseries
-  |Eau  |	Eau de boisson  |	Eau
-**Boissons sucrées**  |	Boissons sucrées de type soda  |	Sodas, limonades
-  |Jus de fruits  |	Jus d’orange
-**Sel**  |	Sel  |	Sel
+                                                               |  Autres féculents raffinés	                        | Riz, pâtes, pommes de terre bouillies
+**Légumineuses**                                               |  Légumineuses                                      |	Lentilles, pois chiches, fèves
+**Viandes et charcuteries, produits de la pêche, œufs (VPO)**  |	Charcuterie	                                      | Saucisse, jambon, pâtés
+                                                               |  Œufs                                              |	Œufs
+                                                               |  Poissons gras                                     |	Saumon, maquereau, sardine, hareng
+                                                               |  Autres poissons, mollusques et crustacés          |	Cabillaud, bar, dorade, moules, crevettes
+                                                               |  Viande hors volaille                              |	Bœuf, veau, porc, mouton, agneau, cheval, abats, gibier
+                                                               |  Volaille                                          |	Poulet, canard
+**Lait et produits laitiers**                                  |	Desserts sucrés lactés                            |	Crèmes dessert, crèmes glacées
+                                                               |  Fromages                                          |	Fromages à pâte molle, pressée
+                                                               |  Lait                                              |	Lait demi-écrémé, lait entier
+                                                               |  Produits laitiers frais nature                    |	Yaourts nature, fromages blancs
+                                                               |  Produits laitiers frais sucrés                    |	Yaourts sucrés
+**Matières grasses ajoutées**                                  |	Beurre                                            |	Beurre et beurres allégés
+                                                               |  Huiles végétales riches ALA                       |	Huile de colza, de noix
+                                                               |  Huiles végétales pauvres en ALA et margarines     |	Huile de tournesol, huile d’olive
+                                                               |  Sauces, crèmes fraîches et condiments             |	Mayonnaise, ketchup, crème fraîche
+**Produits sucrés ou sucrés et gras**                          |	Produits sucrés ou sucrés et gras                 |	Confiture, viennoiseries, biscuits,
+**Eau**                                                        |	Eau de boisson                                    |	Eau
+**Boissons sucrées**                                           |	Boissons sucrées de type soda                     |	Sodas, limonades
+                                                               |  Jus de fruits                                     |	Jus d’orange
+**Sel**                                                        |	Sel                                               |	Sel
 
 ## 1. Importation du dataset
 
