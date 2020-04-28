@@ -49,7 +49,7 @@ Le calcul final du score nutritionnel se fait en soustrayant à la note de compo
 
 > **Les notes théoriques du score vont donc de** ***-15*** **(le plus favorable sur le plan nutritionnel)** ***à +40*** **(le plus défavorable sur le plan nutritionnel).**
 
-| Score     |           | Note |  Logo  
+| Score                 | Note |  Logo  
 |-----------|-----------|------|-------------------------------------------------------------------------------------------------------|
 | Aliments  | Boissons  |      |                                                                                                       |
 | -15 à -1  | Eaux      | A    |  ![LogoA](https://github.com/h4r1c0t/WildCodeSchool/blob/master/Odyssey/Pandas/Yaka%20quest/NS_A.png) |
@@ -102,3 +102,7 @@ Le PNNS dans les données :
 ## 1. Importation du dataset
 
 ## 2. Nettoyage du dataset
+
+## 3. Exploration des données
+On constate qu'en fonction du type d'aliment (solide ou boisson), les critères du nutriscore ne sont pas les mêmes.
+Notre programme doit donc prendre en compte le **nom de l'aliment**, définir **sa classe**, son **nutriscore** pour pouvoir donner la ***catégorie qui correspond***.
