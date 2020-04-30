@@ -1,8 +1,8 @@
-# Hackathon #1
+, # Hackathon #1
 
 ## Equipe :
 - Hélène
--  Souhail
+- Souhail
 - Eryck
 - Sébastien
 
@@ -15,9 +15,13 @@
 - Map des résultats,
 - ...
 
-https://github.com/h4r1c0t/WildCodeSchool/tree/master/Project/Datathon%231
+## Ressources
+### Github
 
-## Les orientations politiques
+### Drive
+
+
+### Les orientations politiques
 
 | Candidat                    	| Orientation 	|
 |-----------------------------	|-------------	|
@@ -88,3 +92,19 @@ https://github.com/h4r1c0t/WildCodeSchool/tree/master/Project/Datathon%231
 | Nicolas DUPONT-AIGNAN (DLR) 	| droite      	|
 | Marine LE PEN (FN)          	| drotie      	|
 | Jacques CHEMINADE (SP)      	| sans        	|
+
+## Modèles de prédiction
+### Année, tour
+Partis de droite
+Score pour les données d'entrainement : 0.58
+Score pour les données test : 0.59
+Partis de gauche
+Score pour les données d'entrainement : 0.65
+Score pour les données test : 0.64
+### Année, tour et abstention
+Partis de droite
+Score pour les données d'entrainement : 0.58
+Score pour les données test : 0.59
+Partis de gauche
+Score pour les données d'entrainement : 0.65
+Score pour les données test : 0.64
