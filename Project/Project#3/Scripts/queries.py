@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd
 import matplotlib.pyplot as plt
 
-conn = sqlite3.connect("D:/Google Drive/Wild Code School/Projets_/Projet #3/Dataset/SQLite3 db/NetflixSmalldb2.db")
+conn = sqlite3.connect("D:/Github/Wild Code School/Project/Project#3/NetflixSmalldb2.db")
 
 SQL_Query = '''
 SELECT * FROM movies
