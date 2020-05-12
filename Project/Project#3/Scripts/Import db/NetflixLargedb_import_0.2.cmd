@@ -1,0 +1,1 @@
+sqlite3 NetflixLarge_n_Imdb.db < import_large_db_0.2.sql
