@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="NetflixLarge_n_Imdb.db" uuid="5e606495-f8fb-4d44-b328-2654cc1c8a88">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../Google Drive/Wild Code School/Projets_/Projet #3/Dataset/SQLite3 db/NetflixLarge_n_Imdb.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="NetflixSmall_n_Imdb.db" uuid="2eecdc02-661b-4dd1-a3ad-c6de18b4907f">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Google Drive\Wild Code School\Projets_\Projet #3\Dataset\SQLite3 db\NetflixSmall_n_Imdb.db</jdbc-url>
+    </data-source>
+  </component>
+</project>
