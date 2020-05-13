@@ -1,1 +1,0 @@
-sqlite3 NetflixSmall_n_Imdb.db < import_small_db_0.2.sql
