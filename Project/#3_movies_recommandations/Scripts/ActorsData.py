@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 path = 'D:/tmp storage/Project#3/SQLite3 db/GrosseBertha_1.2.db'
 conn = sqlite3.connect(path)
 
-#%% Fonction de création d'un BDD avec les acteurs pour chaque films.
+#%% Fonction de création d'un BDD avec les acteurs pour chaque films (provient du code de Coralie).
 def acteurs_films() :
         df_acteurs = pd.read_sql_query(
                 '''SELECT   itp.tconst,
@@ -62,10 +62,26 @@ def acteurs():
                     FROM imdb_name_basic inb
                     ''', conn)
 
-        df_acteurs['films'] = df_acteurs['knownForTitles'].apply(lambda x: x.slit(', '))
+        # Créé une liste avec les id des films pour lequels l'acteur est connu.
+        df_acteurs['knownForTitles'] = df_acteurs['knownForTitles'].apply(lambda x: x.split(','))
+
+        # Remplace les id des films par leurs titres.
+        ## Créé le DataFrame contenant les films
+        df_films = pd.read_sql_query(
+                '''SELECT tconst idFilm, originalTitle title, genres
+                    FROM imdb_title_basics itb
+                    ''', conn)
+
+        
 
         return (df_acteurs)
 
+#%%
 df_acteurs = acteurs()
 
-#%%
+#%% TESTING ZONE
+
+
+actor = str(input())
+
+df_acteurs[df_acteurs['primaryName'] == actor]
