@@ -61,3 +61,8 @@ def acteurs():
                 '''SELECT *
                     FROM imdb_name_basic inb
                     ''', conn)
+
+
+        return (df_acteurs)
+
+df_acteurs = acteurs()
