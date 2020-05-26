@@ -62,7 +62,10 @@ def acteurs():
                     FROM imdb_name_basic inb
                     ''', conn)
 
+        df_acteurs['films'] = df_acteurs['knownForTitles'].apply(lambda x: x.slit(', '))
 
         return (df_acteurs)
 
 df_acteurs = acteurs()
+
+#%%
