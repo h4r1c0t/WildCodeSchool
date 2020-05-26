@@ -4,6 +4,11 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+import streamlit as st
+# from sklearn.neighbors import NearestNeighbors
+import requests
+import json
+
 #%% CONNECTION TO DB
 path = 'D:/tmp storage/Project#3/SQLite3 db/GrosseBertha_1.2.db'
 conn = sqlite3.connect(path)
@@ -72,7 +77,7 @@ def acteurs():
                     FROM imdb_title_basics itb
                     ''', conn)
 
-        
+
 
         return (df_acteurs)
 
