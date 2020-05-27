@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="GrosseBertha_1.1.db" uuid="b7c8b33b-ebf1-44a1-88b6-2daff64e1d5a">
+    <data-source source="LOCAL" name="GrosseBertha_1.2.db" uuid="0b6c2661-6b77-46c1-90b2-55cb0d4b50f1">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../tmp storage/Project#3/SQLite3 db/GrosseBertha_1.1.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../tmp storage/Project#3/SQLite3 db/GrosseBertha_1.2.db</jdbc-url>
     </data-source>
   </component>
 </project>
