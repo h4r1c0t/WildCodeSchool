@@ -55,7 +55,16 @@ def films():
                            ) tab1
                     ON tab1.movieId = m.movieId
                     ''', conn)
-        return df_films
+
+        df_ratings = pd.read_sql_query(
+                '''SELECT  r.movieId, r.rating note
+                    FROM ratings r 
+                ''', conn)
+        df_ratings = df_ratings.groupby(by = 'movieId').mean()
+        df_ratings.reset_index(inplace = True)
+        df_films_notes = pd.merge(df_films, df_ratings, on = 'movieId', how = 'outer')
+
+        return df_films_notes
 
 
 df_films = films()
@@ -154,7 +163,6 @@ def actor_select(actor = 'Nicolas Cage'):
                 - known_movies_title_list       : Films les plus connus (list)
                 - allMovies_list                : Liste des films ['title', 'genres', 'genre1'] (DataFrame)
                 - nbMovies                      : Nombre de films (int)
-                - p                             : Représentation graphique du nombre de films par genre principal
         '''
         actors_list = list(df_acteurs['primaryName'])
 
@@ -174,7 +182,7 @@ def actor_select(actor = 'Nicolas Cage'):
         known_movies_title_list = []
         nbMovies = df_nb_films_acteurs[df_nb_films_acteurs['acteur'] == actor].iloc[0, 1]
         moviesId_list = list(df_acteurs_imdbId['imdbId'][df_acteurs_imdbId['acteur'] == actor])
-        allMovies_list = df_films[['title', 'genres']][df_films['imdbId'].isin(moviesId_list)]
+        allMovies_list = df_films[['title', 'genres', 'note']][df_films['imdbId'].isin(moviesId_list)]
         allMovies_list['genres'] = allMovies_list['genres'].apply(lambda x: x.split(','))
         allMovies_list['genre1'] = allMovies_list['genres'].apply(lambda x: x[0])
 
@@ -186,20 +194,46 @@ def actor_select(actor = 'Nicolas Cage'):
                 known_movies_title_list.append(df_films[['clientTitle']][df_films['imdbId'] == movie].iloc[0, 0])
                 print('- ', known_movies_title_list[i])
 
-        # Représentation graphique des genres les plus représentés dans la fimographie de l'acteur
+        return actor_name, actor_dates, actor_prof, known_movies_title_list, allMovies_list, nbMovies
+
+
+# Recherche d'un acteur:
+name, dates, prof, knownmovies, allMovies_list, nbMovies = actor_select('Clint Eastwood')
+
+#%% Représentation graphique des genres les plus représentés dans la fimographie de l'acteur
+def genresPlot():
         plt_data = allMovies_list[['title', 'genre1']]
         plt_data = plt_data.groupby(['genre1']).count()
         plt_data.sort_values(by = 'title', ascending = False, inplace = True)
         p = sns.barplot(x = plt_data.index, y = 'title', data = plt_data)
         p = plt.xlabel('Genre principal')
         p = plt.ylabel('Nombre de films')
-        p = plt.show()
-        return actor_name, actor_dates, actor_prof, known_movies_title_list, allMovies_list, nbMovies, p
+        p = plt.xticks(rotation = 30)
+        plt.show()
+
+# Graph
+genresPlot()
 
 
-#################### TEST ZONE ####################
-#%%
-name, dates, prof, knownmovies, allMovies_list, nbMovies, p = actor_select('Nicolas Kage')
+#%% ####################################################### TEST ZONE #######################################################
+def actorFilmGenres(genre = None, actor = name, nbFilms = 5):
+        '''
+        Cette fonction permet de recommander les films les mieux notés d'un acteur donné pour un genre donné (ou non)
+        :param genre: str
+        Permet de choisir un genre en particulier. Par défault tous les genres seront affichés.
+        :param actor:
+        Permet de choisir l'acteur. Par défault le résultat de la recherche sur l'acteur (name)
+        :param nbFilms:
+        Permet de choisir le nombre de films à recommander
+        :return:
+        Retourne le DataFrame avec le nom des films, leurs genres et leurs notes.
+        '''
+        if genre:
+                recommandation = allMovies_list[['title', 'genres', 'note']][allMovies_list['genre1'] == genre]
+                recommandation = recommandation.sort_values('note', ascending = False).iloc[:nbFilms,:]
+        else:
+                recommandation = allMovies_list[['title', 'genres', 'note']]
+                recommandation = recommandation.sort_values('note', ascending = False).iloc[:nbFilms, :]
+        return recommandation
 
-#%%
-name, dates, prof, knownmovies, allMovies_list, nbMovies = actor_select('robert deniro')
+actorFilmGenres('Action')
