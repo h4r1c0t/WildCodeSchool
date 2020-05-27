@@ -151,4 +151,3 @@ name, dates, prof, movies, nbMovies = actor_select()
 
 #################### TEST ZONE ####################
 #%%
-
