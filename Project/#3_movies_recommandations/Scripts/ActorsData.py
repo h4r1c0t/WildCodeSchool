@@ -129,6 +129,6 @@ moviesId = []
 movies_title_list = []
 
 for movie in movies:
-
+        movies_title_list.append(df_films[['title']][df_films['imdbId'] == movie].iloc[0, 0])
 
 print(movies_title_list)
