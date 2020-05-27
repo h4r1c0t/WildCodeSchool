@@ -3,13 +3,14 @@ import sqlite3
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 from fuzzywuzzy import process
 
-import streamlit as st
+# import streamlit as st
 # from sklearn.neighbors import NearestNeighbors
-import requests
-import json
+# import requests
+# import json
 
 # %% CONNECTION TO DB
 path = 'D:/tmp storage/Project#3/SQLite3 db/GrosseBertha_1.2.db'
@@ -18,6 +19,9 @@ conn = sqlite3.connect(path)
 #################### RECUPERATION DES DONNEES SUR LES ACTEURS ####################
 # %% Création d'une BDD avec les infos de chaques acteurs
 def acteurs():
+        '''
+        Cette fonction fait appel à la table `imdb_name_basic` pour récupérer les informations des acteurs
+        '''
         df_acteurs = pd.read_sql_query(
                 '''SELECT *
                     FROM imdb_name_basic inb
@@ -25,25 +29,26 @@ def acteurs():
 
         # Créé une liste avec les id des films pour lequels l'acteur est connu.
         df_acteurs['knownForTitles'] = df_acteurs['knownForTitles'].apply(lambda x: x.split(','))
-
-        # Remplace les id des films par leurs titres.
-        ## Créé le DataFrame contenant les films
-        df_films = pd.read_sql_query(
-                '''SELECT tconst idFilm, originalTitle title, genres
-                    FROM imdb_title_basics itb
-                    ''', conn)
-
-        return (df_acteurs)
+        return df_acteurs
 
 
 df_acteurs = acteurs()
 
 # %% Création d'un DF avec les films
 def films():
+        '''
+        Cette fonction fait appel à la BDD pour récupérer les informations sur les films:
+                - movieId       : id dans la base de client
+                - imdbId        : id dans la base imdb
+                - clientTitle   : titre du film dans la base client avec l'année entre parenthèse
+                - title         : titre original du film à partir de la base imdb
+                - durée         : durée en minutes
+                - genres        : genres selon la base imdb
+        '''
         df_films = pd.read_sql_query(
-                '''SELECT   m.movieId movieId, tab1.imdbId imdbId, m.title clientTitle, tab1.imdbTitle title, tab1.durée, m.genres genres
+                '''SELECT   m.movieId movieId, tab1.imdbId imdbId, m.title clientTitle, tab1.imdbTitle title, tab1.durée, tab1.genres genres
                     FROM movies m 
-                    JOIN (SELECT l.movieId movieId, imdbId, itb.primaryTitle imdbTitle, startYear year, runtimeMinutes durée
+                    JOIN (SELECT l.movieId movieId, imdbId, itb.primaryTitle imdbTitle, startYear year, genres genres, runtimeMinutes durée
                            FROM imdb_title_basics itb
                            JOIN links l
                            ON l.imdbId = itb.tconst
@@ -58,6 +63,9 @@ df_films = films()
 #################### NOMBRE DE FILMS PAR ACTEURS ####################
 # %% Fonction de création d'un BDD avec les acteurs pour chaque films (provient du code de Coralie).
 def acteurs_films():
+        '''
+        Cette fonction fait appel à la base de donnée pour créer un DataFrame comportant les principaux acteurs de chaque film.
+        '''
         df_acteurs = pd.read_sql_query(
                 '''SELECT   itp.tconst,
                             itp.ordering,
@@ -97,29 +105,57 @@ def acteurs_films():
         df_acteurs = pd.merge(df_acteur1, df_acteur2, on = 'imdbId', how = 'outer')
         df_acteurs = pd.merge(df_acteurs, df_acteur3, on = 'imdbId', how = 'outer')
         df_acteurs = pd.merge(df_acteurs, df_acteur4, on = 'imdbId', how = 'outer')
-        return (df_acteurs)
 
-df_acteurs_films = acteurs_films()
+        acteur1 = df_acteurs[['imdbId', 'acteur1']]
+        acteur1.rename(columns = {'acteur1': 'acteur'}, inplace = True)
+        acteur2 = df_acteurs[['imdbId', 'acteur2']]
+        acteur2.rename(columns = {'acteur2': 'acteur'}, inplace = True)
+        acteur3 = df_acteurs[['imdbId', 'acteur3']]
+        acteur3.rename(columns = {'acteur3': 'acteur'}, inplace = True)
+        acteur4 = df_acteurs[['imdbId', 'acteur4']]
+        acteur4.rename(columns = {'acteur4': 'acteur'}, inplace = True)
 
-# %% Création d'un DF en long avec les films et leurs acteurs
-acteur1 = df_acteurs_films[['imdbId', 'acteur1']]; acteur1.rename(columns = {'acteur1': 'acteur'}, inplace = True)
-acteur2 = df_acteurs_films[['imdbId', 'acteur2']]; acteur2.rename(columns = {'acteur2': 'acteur'}, inplace = True)
-acteur3 = df_acteurs_films[['imdbId', 'acteur3']]; acteur3.rename(columns = {'acteur3': 'acteur'}, inplace = True)
-acteur4 = df_acteurs_films[['imdbId', 'acteur4']]; acteur4.rename(columns = {'acteur4': 'acteur'}, inplace = True)
+        # DF long acteurs | films
+        df_acteurs_imdbId = pd.concat([acteur1, acteur2, acteur3, acteur4])
+        df_acteurs_imdbId.dropna(inplace = True)
 
-# DF long acteurs | films
-df_acteurs_imdbId = pd.concat([acteur1, acteur2, acteur3, acteur4])
-df_acteurs_imdbId.dropna(inplace = True)
+        return (df_acteurs_imdbId)
 
-# DF NbFilms par acteur.
+df_acteurs_imdbId = acteurs_films()
+
+# %% Création d'un DF avec le nombre de films par acteur.
 df_nb_films_acteurs = df_acteurs_imdbId.groupby(by = 'acteur').count()
-df_nb_films_acteurs.reset_index(inplace = True)
 df_nb_films_acteurs.rename(columns = {'imdbId': 'nb_film'}, inplace = True)
+df_nb_films_acteurs.reset_index(inplace = True)
 
-#
 #################### RECHERCHE DES INFOS D'UN ACTEUR ####################
 # %% Fonction de sélection d'un acteur
 def actor_select(actor = 'Nicolas Cage'):
+        '''
+        Cette fonction permet de rechercher un acteur dans la base de donnée.
+        Elle renvoie un petit texte :
+        e.g.,
+                Nicolas Cage is an actor, born in 1964.
+                Nicolas Cage plays in 81 movies, the most known are:
+                -  Leaving Las Vegas (1995)
+                -  Next (2007)
+                -  Face/Off (1997)
+                -  Rock, The (1996)
+
+        Ainsi qu'un graphique avec la répartition du nombre de films par genre principal
+        :param actor:
+        Nom de l'acteur à rechercher. Par défault Nicolas Cage. Pourquoi lui ? Bah parce qu'il en
+        fallait bien un pour les tests...
+        :return:
+        La fonction renvoie un certain nombre de variables :
+                - actor_name                    : Nom complet de l'acteur (str)
+                - actor_dates                   : Dates de naissance et de mort (list)
+                - actor_prof                    : Professions (list)
+                - known_movies_title_list       : Films les plus connus (list)
+                - allMovies_list                : Liste des films ['title', 'genres', 'genre1'] (DataFrame)
+                - nbMovies                      : Nombre de films (int)
+                - p                             : Représentation graphique du nombre de films par genre principal
+        '''
         actors_list = list(df_acteurs['primaryName'])
 
         # Boucle if: si la syntaxe n'est pas bonne, alors on va chercher le nom le plus proche.
@@ -135,19 +171,35 @@ def actor_select(actor = 'Nicolas Cage'):
         actor_prof = actor_infos.iloc[0, 4].split(",")
         actor_prof1 = actor_prof[0]
         actor_movies = actor_infos.iloc[0, 5]
-        movies_title_list = []
-        nbMovies = df_nb_films_acteurs[df_nb_films_acteurs['acteur'] == acteur].iloc[0, 1]
+        known_movies_title_list = []
+        nbMovies = df_nb_films_acteurs[df_nb_films_acteurs['acteur'] == actor].iloc[0, 1]
+        moviesId_list = list(df_acteurs_imdbId['imdbId'][df_acteurs_imdbId['acteur'] == actor])
+        allMovies_list = df_films[['title', 'genres']][df_films['imdbId'].isin(moviesId_list)]
+        allMovies_list['genres'] = allMovies_list['genres'].apply(lambda x: x.split(','))
+        allMovies_list['genre1'] = allMovies_list['genres'].apply(lambda x: x[0])
+
         # On affiche une petite phrase (optionnel)
         print('{} is an {}, born in {}.\n{} plays in {} movies, the most known are:'.format(actor_name, actor_prof1, actor_dates[0],
                                                                              actor_name, nbMovies))
         # Cherche le nom des films
         for movie, i in zip(actor_movies, range(len(actor_movies))):
-                movies_title_list.append(df_films[['clientTitle']][df_films['imdbId'] == movie].iloc[0, 0])
-                print('- ', movies_title_list[i])
-        return actor_name, actor_dates, actor_prof, movies_title_list, nbMovies
+                known_movies_title_list.append(df_films[['clientTitle']][df_films['imdbId'] == movie].iloc[0, 0])
+                print('- ', known_movies_title_list[i])
 
+        # Représentation graphique des genres les plus représentés dans la fimographie de l'acteur
+        plt_data = allMovies_list[['title', 'genre1']]
+        plt_data = plt_data.groupby(['genre1']).count()
+        plt_data.sort_values(by = 'title', ascending = False, inplace = True)
+        p = sns.barplot(x = plt_data.index, y = 'title', data = plt_data)
+        p = plt.xlabel('Genre principal')
+        p = plt.ylabel('Nombre de films')
+        p = plt.show()
+        return actor_name, actor_dates, actor_prof, known_movies_title_list, allMovies_list, nbMovies, p
 
-name, dates, prof, movies, nbMovies = actor_select()
 
 #################### TEST ZONE ####################
 #%%
+name, dates, prof, knownmovies, allMovies_list, nbMovies, p = actor_select('Nicolas Kage')
+
+#%%
+name, dates, prof, knownmovies, allMovies_list, nbMovies = actor_select('robert deniro')
