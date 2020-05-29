@@ -6,7 +6,7 @@ import pandas as pd
 import plotly.express as px
 
 
-path = 'D:/tmp storage/Project#3/SQLite3 db/GrosseBertha_1.2.db'
+path = 'D:/tmp storage/Project#3/SQLite3 db/GrosseBertha_1.2.db'  # A CHANGER AVEC TON CHEMIN VERS LA BASE DE DONNEE
 conn = sqlite3.connect(path)
 
 sql_query ='''SELECT   itp.tconst,
@@ -89,26 +89,92 @@ five_guys_genres = actor_genre_number[actor_genre_number['acteur'].isin(actors_f
 five_guys_genres1 = five_guys_genres.rename(columns={'acteur': '.', 'genres': 'Genre', 'imdbId': 'NbFilms'})
 five_guys_genres = five_guys_genres.rename(columns={'acteur': 'Acteur', 'genres': 'Genre', 'imdbId': 'NbFilms'})
 
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+fig1 = px.scatter_3d(five_guys_genres1, x='Genre', y='NbFilms', z='.',color='.',color_discrete_sequence = ['#c7c6c6','#17b1bf','#f6b804','#926037','#eb5e68'])
+fig1.update_layout(title = {'text': '',
+              'y':0.995,
+              'x':0.5,
+              'xanchor': 'center',
+              'yanchor': 'top'},
+              showlegend=True,
+              paper_bgcolor='#f5ebdc',
+    font=dict(
+        family="Courier New, monospace",
+        size=14,
+        color="#7f7f7f"),
+              scene = dict(
+                    xaxis = dict(
+                         backgroundcolor="#f5ebdc",
+                         gridcolor="white",
+                         showbackground=True,
+                         zerolinecolor="white",),
+                    yaxis = dict(
+                        backgroundcolor="#f5ebdc",
+                        gridcolor="white",
+                        showbackground=True,
+                        zerolinecolor="white"),
+                    zaxis = dict(
+                        backgroundcolor="#f5ebdc",
+                        gridcolor="white",
+                        showbackground=True,
+                        zerolinecolor="#f5ebdc",),),
+                    width=700,
+                    margin=dict(
+                    r=10, l=10,
+                    b=10, t=10)
+                  )
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-app.layout = html.Div(children=[
-    html.H1(children='Give Me Five project'),
-
-    html.Div(children='''
-        Interactive graph: Répartition des films par acteur et par genre.
-    '''),
-    dcc.Graph(figure=px.scatter_3d(five_guys_genres1, x='Genre', y='NbFilms', z='.',color='.',
-             color_discrete_sequence = ['#c7c6c6','#17b1bf','#f6b804','#926037','#eb5e68'])),
-
-    dcc.Graph(figure=px.bar(five_guys_genres, x = 'Acteur', y = 'NbFilms', color = 'Genre',
+fig2 = px.bar(five_guys_genres, x = 'Acteur', y = 'NbFilms', color = 'Genre',
              color_discrete_sequence = ['#553B2A', '#432918', '#2F190A',
                                         '#FA8790', '#EB5E68', '#CF3944',
                                         '#3ABDC9', '#17B1BF', '#029CAB',
                                         '#FFCD3A', '#F6B804', '#C08F00',
                                         '#B38258', '#926037', '#73441C',
-                                        '#C7C6C6', '#9D9B9B']))
+                                        '#C7C6C6', '#9D9B9B'])
+
+fig2.update_layout(
+    title = {'text': 'Répartition des films par acteur et par genre',
+              'y':0.995,
+              'x':0.5,
+              'xanchor': 'center',
+              'yanchor': 'top'},
+    xaxis_title="Acteurs",
+    yaxis_title="Nombre de films",
+    font=dict(
+        family="Courier New, monospace",
+        size=14,
+        color="#7f7f7f"),
+        plot_bgcolor="#F5EBDC",
+        paper_bgcolor="#F5EBDC",
+        showlegend=True)
+
+
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
+colors = {
+    'background': '#F5EBDC',
+    'text': '#432918'
+}
+
+
+app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
+    html.H1(
+        children='Give Me Five project',
+        style={
+            'textAlign': 'center',
+            'color': colors['text']
+        }
+    ),
+
+    html.Div(children='Graphiques interactifs: Répartition des films par acteurs et par genres', style={
+        'textAlign': 'center',
+        'color': colors['text']
+    }),
+
+    dcc.Graph(figure=fig1),
+    dcc.Graph(figure=fig2)
 ])
 
 if __name__ == '__main__':
