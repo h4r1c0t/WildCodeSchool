@@ -1,3 +1,11 @@
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+import sqlite3
+import pandas as pd
+import plotly.express as px
+
+
 path = 'D:/tmp storage/Project#3/SQLite3 db/GrosseBertha_1.2.db'
 conn = sqlite3.connect(path)
 
@@ -78,3 +86,30 @@ actor_genre_number.reset_index(inplace=True)
 actors_five_guys = list(five_guys.iloc[:, 0])
 
 five_guys_genres = actor_genre_number[actor_genre_number['acteur'].isin(actors_five_guys)]
+five_guys_genres1 = five_guys_genres.rename(columns={'acteur': '.', 'genres': 'Genre', 'imdbId': 'NbFilms'})
+five_guys_genres = five_guys_genres.rename(columns={'acteur': 'Acteur', 'genres': 'Genre', 'imdbId': 'NbFilms'})
+
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
+app.layout = html.Div(children=[
+    html.H1(children='Give Me Five project'),
+
+    html.Div(children='''
+        Interactive graph: Répartition des films par acteur et par genre.
+    '''),
+    dcc.Graph(figure=px.scatter_3d(five_guys_genres1, x='Genre', y='NbFilms', z='.',color='.',
+             color_discrete_sequence = ['#c7c6c6','#17b1bf','#f6b804','#926037','#eb5e68'])),
+
+    dcc.Graph(figure=px.bar(five_guys_genres, x = 'Acteur', y = 'NbFilms', color = 'Genre',
+             color_discrete_sequence = ['#553B2A', '#432918', '#2F190A',
+                                        '#FA8790', '#EB5E68', '#CF3944',
+                                        '#3ABDC9', '#17B1BF', '#029CAB',
+                                        '#FFCD3A', '#F6B804', '#C08F00',
+                                        '#B38258', '#926037', '#73441C',
+                                        '#C7C6C6', '#9D9B9B']))
+])
+
+if __name__ == '__main__':
+    app.run_server(debug=True)

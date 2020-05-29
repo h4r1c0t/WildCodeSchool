@@ -215,7 +215,6 @@ def genresPlot():
 genresPlot()
 
 
-#%% ####################################################### TEST ZONE #######################################################
 def actorFilmGenres(genre = None, actor = name, nbFilms = 5):
         '''
         Cette fonction permet de recommander les films les mieux notés d'un acteur donné pour un genre donné (ou non)
@@ -237,3 +236,6 @@ def actorFilmGenres(genre = None, actor = name, nbFilms = 5):
         return recommandation
 
 actorFilmGenres('Action')
+
+
+#%% ####################################################### TEST ZONE #######################################################
