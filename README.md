@@ -6,7 +6,7 @@ Ce dossier permet de stocker les scripts et les notebooks créer lors des quête
 ## Contenu des dossiers
 ### Odyssey
 Contient les scripts et colab notebooks portant sur les quêtes réalisées sur la plateforme Odyssey de la WCS.
-### Projects
+### Project
 Contient les scripts et les présentations des projets clients. 
 ### Dojo
 Contient les colab notebooks des sessions de dojo. Les **dojo** étant des sessions de code où chacun va faire progresser le code à tour de rôle. 
