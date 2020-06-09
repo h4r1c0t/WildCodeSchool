@@ -1,9 +1,10 @@
-def regression_modeling(model, data, target, screening):
+def regression_modeling(model, data, target, cv=5, screening=True):
     '''
 
     :param model: 'knn', 'lr', 'log'
     :param data: DataFrame
     :param target: y
+    :param cv: number of split for the cross validation
     :param screening: Do you want a print of the scores
     :return: Return the fitted model and the columns used
     '''
@@ -52,15 +53,15 @@ def regression_modeling(model, data, target, screening):
         y = data[target]
 
         if model.lower() == 'knn':
-            cv =  StratifiedKFold(n_splits = 6, random_state = 42, shuffle = True)
+            cv =  StratifiedKFold(n_splits = cv, random_state = 42, shuffle = True)
             scores = cross_val_score(KNeighborsRegressor(), X, y, cv=cv,
                                         scoring = make_scorer(accuracy_score))
         elif model.lower() == 'lr':
-            cv =  StratifiedKFold(n_splits = 6, random_state = 42, shuffle = True)
+            cv =  StratifiedKFold(n_splits = cv, random_state = 42, shuffle = True)
             scores = cross_val_score(LinearRegression(), X, y, cv=cv,
                                     scoring = make_scorer(accuracy_score))
         elif model.lower(model) == 'log':
-            cv =  StratifiedKFold(n_splits = 6, random_state = 42, shuffle = True)
+            cv =  StratifiedKFold(n_splits = cv, random_state = 42, shuffle = True)
             scores = cross_val_score(LogisticRegression(), X, y, cv=cv,
                                     scoring = make_scorer(accuracy_score))
         else:
