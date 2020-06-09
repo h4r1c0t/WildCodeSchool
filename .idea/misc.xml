@@ -4,4 +4,17 @@
     <option name="languageLevel" value="ES6" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (Default)" project-jdk-type="Python SDK" />
+  <component name="RMarkdownSettings">
+    <option name="renderProfiles">
+      <map>
+        <entry key="$USER_HOME$/OneDrive - Universidade do Minho/Documents/#2 Thèse/R_Digit-SSVEP/1.1_Digit-SSVEP_Data_cleanning_SBA.Rmd">
+          <value>
+            <RMarkdownRenderProfile>
+              <option name="knitRootDirectory" value="$USER_HOME$/OneDrive - Universidade do Minho/Documents/#2 Thèse/R_Digit-SSVEP" />
+            </RMarkdownRenderProfile>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
 </project>

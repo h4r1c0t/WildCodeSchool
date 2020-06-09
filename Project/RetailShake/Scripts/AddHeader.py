@@ -10,5 +10,5 @@ colNames = ['product-company-id', 'product-id', 'gtin', 'label', 'company-id', '
             'company_stock', 'avg_stock_in_store', 'company_presence', 'company_to_order', 'company_out_of_stock',
             'company_soon_available', 'stddev_stock_in_store']
 
-df = pd.read_csv('C:/Users/vanst/Downloads/WCS/WCS/piwigo_retail_product_company (4).csv', names = colNames)
-df.to_csv('C:/Users/vanst/Downloads/WCS/WCS/piwigo_retail_product_company(header).csv')
+df = pd.read_csv('Project/RetailShake/Datasets/piwigo_retail_product_company (4).csv', names = colNames)
+df.to_csv('Project/RetailShake/Datasets/piwigo_retail_product_company(header).csv', index = False)
