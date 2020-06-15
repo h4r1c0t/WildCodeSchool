@@ -7,5 +7,14 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../tmp storage/Project#3/SQLite3 db/GrosseBertha_1.2.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="MySQL for 5.1 - @localhost" uuid="7485b96b-c064-4603-a457-589c9b84498b">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="UTC" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>
