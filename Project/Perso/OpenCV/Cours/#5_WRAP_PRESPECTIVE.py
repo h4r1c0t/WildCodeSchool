@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread("D:/Github/Wild Code School/Project/OpenCV/cards.jpg")
+img = cv2.imread("/Project/Perso/OpenCV/cards.jpg")
 
 width, height = 250, 350
 pts1 = np.float32([[225, 95], [425, 140], [165, 380], [365, 425]])

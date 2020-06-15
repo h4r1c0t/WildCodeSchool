@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-img = cv2.imread("D:/Github/Wild Code School/Project/OpenCV/cards.jpg")
+img = cv2.imread("/Project/Perso/OpenCV/cards.jpg")
 print(img.shape)
 
 # Resize

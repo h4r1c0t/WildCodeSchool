@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-img = cv2.imread("D:/Github/Wild Code School/Project/OpenCV/cards.jpg")
+img = cv2.imread("/Project/Perso/OpenCV/cards.jpg")
 kernel = np.ones((5, 5), np.uint8)
 
 imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

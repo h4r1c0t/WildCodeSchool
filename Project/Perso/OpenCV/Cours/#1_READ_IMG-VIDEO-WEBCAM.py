@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 # %% IMG
-img = cv2.imread("D:/Github/Wild Code School/Project/OpenCV/cards.jpg")
+img = cv2.imread("/Project/Perso/OpenCV/cards.jpg")
 cv2.imshow("Image", img)
 cv2.waitKey(0)
 
