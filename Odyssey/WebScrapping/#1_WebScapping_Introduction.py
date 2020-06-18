@@ -10,13 +10,15 @@ fact_list = body.find(id = 'factslist')
 facts = fact_list.find_all(class_ = 'fact')
 
 facts_nums = [re.sub(r"[^\w]", '', fact.find(class_ = 'head').get_text()) for fact in facts]
-facts_bodies = [re.sub("Votez !", '', fact.find(class_ = 'factbody').get_text()) for fact in facts]
+facts_bodies = [re.sub("Votez !\n\n\n", ' ', fact.find(class_ = 'factbody').get_text()) for fact in facts]
+facts_bodies = [re.sub("\n", "", fact).strip() for fact in facts_bodies]
+
 
 data = pd.DataFrame(
     {
         'id': facts_nums,
-        'body': facts_bodies
+        'body': [re.sub("\d.\d+ / 10", "", fact).strip() for fact in facts_bodies],
+        'note': [re.search("\d.\d+ / 10", fact).group(0) for fact in facts_bodies]
     })
 
-print(data.iloc[0, 1])
-
+data = data.iloc[:9, :]
