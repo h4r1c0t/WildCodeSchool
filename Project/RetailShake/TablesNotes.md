@@ -1,4 +1,5 @@
-```MySQL
+# Exploration des tables
+```SQL
 DESCRIBE piwigo_retail_product_company;
 ``` 
 
