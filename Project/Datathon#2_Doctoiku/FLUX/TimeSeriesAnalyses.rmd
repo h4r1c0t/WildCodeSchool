@@ -1,0 +1,261 @@
+---
+title: "Forecasting of time series"
+---
+
+## Setup of libraries
+This notebook uses several libraries for handling of Time Series data which are not natively provided as part of the DSS R setup script:
+- forecast
+- zoo
+- timeDate
+You can either manually install these packages or uncomment the following line to install the packages
+
+```{r}
+install.packages(c("forecast", "zoo", "timeDate", "rmarkdown"), repos="https://cloud.r-project.org/")
+# Import the required packages
+library(dataiku)
+library(forecast)
+library(data.table)
+library(zoo)
+library(timeDate)
+```
+
+## Load the time series data
+
+The fist step in the analysis is to load the analysis containing the time series data.
+
+Note that this forecast notebook requires the time series data to be a valid DSS date.
+Since loading data as R dataframe requires a fair amount of RAM, we only load the first 100'000 rows of the dataset. Feel free to change that number in the following cell
+
+```{r}
+df <- dkuReadDataset("INC_Pop_TempF_OH_Google_Mort", samplingMethod="head", nbRows=100000)
+
+# The various analysis methods that we will use are not resilient to NA values, so drop them right away
+df <- na.omit(df)
+
+# Let's preview a bit of our data
+head(df)
+```
+
+## Create table with the initial data
+Now that we have read the dataset, let's create a "raw" table of data, keeping only the "time" and "data" columns.
+
+We assume that:
+
+- the date column is the first one
+- the values column is the second one
+
+```{r}
+time_series <- NULL
+time_series$time_column <- df[,c(1)]
+time_series$series_column <- df[,c(2)]
+
+print(paste("Using time column: ", names(df)[1]))
+print(paste("Using value column: ", names(df)[2]))
+```
+
+```{r}
+# If you want to use other columns that these ones, uncomment the following lines
+
+# time_series$time_column <- mydataset$my_date_column
+# time_series$series_column <- mydataset$my_time_series_column
+```
+
+We parse the time column as a date
+
+
+```{r}
+time_series$time_column <- as.Date(time_series$time_column)
+```
+```{r}
+# If your data has a granularity less than the day, you must first it average it by day using this
+
+#time_column <- time_series$time_column
+#series_column <- time_series$series_column
+#
+#x = aggregate(series_column ~ time_column, FUN=mean)
+#time_series$time_column <- as.Date(x$time_column)
+#time_series$series_column <- x$series_column
+```
+Let's plot the "raw" time series. At this point, it might contain holes or irregular data
+
+```{r}
+plot(time_series$time_column, time_series$series_column, type="o", xlab="Time", ylab="Value")
+```
+
+## Data preparation
+### Interpolation
+
+Before we can go into more details, we need to make sure that our time series is "regular", ie that there are no holes or "extraneous data".
+
+The first step is to remove holes by:
+
+- generating a continuous series between the first and last dates
+- joining the original data with this continuous series
+- using a linear interpolation to fill missing data
+You'll need to select the interpolation granularity, ie the time range that we'll standardize on
+
+
+```{r}
+# We interpolate data day by day
+# You have a choice of different sampling frequencies "day", "week", "month", "quarter" or "year"
+
+INTERPOLATION_GRANULARITY <- "day"
+
+alldates <- data.table(seq.Date(min(time_series$time_column), max(time_series$time_column), by=INTERPOLATION_GRANULARITY))
+
+alldates$time_column <- alldates$V1
+
+# We create a table dt containing the resampled time column
+dt <- merge(time_series, alldates, by='time_column', all=TRUE)
+dt$V1 <- NULL
+
+# We add to dt the time series interpolated for the new sampling frequency
+dt$series_column <- na.approx(dt$series_column, x = dt$time_column, na.rm = TRUE)
+```
+Let's plot the interpolated data
+
+```{r}
+plot(dt$time_column, dt$series_column, type="s")
+```
+
+### Smoothing
+Now that we have regular data, we could also choose to "smooth" the time series (for example, to a month granularity).
+
+Uncomment the following two cells to smooth by month. Note that you'll need to change the TS_FREQUENCY variable later on.
+
+```{r}
+#SMOOOTHING_GRANULARITY <- "month"
+#
+#alldates_smooth <- data.table(seq.Date(min(dt$time_column), max(dt$time_column), by=SMOOOTHING_GRANULARITY))
+#
+#alldates_smooth$time_column <- alldates_smooth$V1
+#
+## We create a table dt containing the resampled time column
+#dt <- merge(dt, alldates_smooth, by='time_column', all=FALSE)
+#dt$V1 <- NULL
+#
+## We add to dt the time series interpolated for the new sampling frequency
+#dt$series_column <- na.approx(dt$series_column, x = dt$time_column, na.rm = TRUE)
+```
+
+```{r}
+# Plot the smoothed time series
+#plot(dt$time_column, dt$series_column, type="s")
+```
+### Build the TS object
+Until now, our data is still specified as two series:
+
+- One series of timestamps
+- One series of values
+For R forecasting models, we need a "ts" object which combines both information.
+
+The "ts" object has a notion of "time period", which is used by all models that try to handle the seasonality. Here, we are assuming a yearly seasonality (and, as seen previously, a daily time series).
+
+For example, if your data is actually a monthly time series (or you smoothed by month earlier), use frequency=12 and use the day in month as second argument to "start"
+
+```{r}
+beg_date_year = as.numeric(format(min(dt$time_column), "%Y"))
+beg_date_day_in_year = as.numeric(format(min(dt$time_column), "%j"))
+
+TS_FREQUENCY <- 365
+
+tsdata = ts(dt$series_column, start=c(beg_date_year, beg_date_day_in_year), frequency=TS_FREQUENCY)
+```
+
+```{r}
+plot(tsdata)
+```
+Finally, let's set the time period on which we'll predict. We default to 400 (assuming a day time series). You should reduce this if you are using a monthly (or other) time series
+
+```{r}
+FORECAST_PERIOD <- 400
+```
+## Seasonality decomposition
+Before actually forecasting, we can decompose the time series into the three main components:
+
+- Trend: the long-term evolution of the time series
+- Seasonality: the reproducible variation within each time period (as previously defined)
+- Random: unpredictable variations
+
+```{r}
+decomposition <- decompose(tsdata)
+```
+
+```{r}
+plot(decomposition)
+```
+
+## Forecasting with ARIMA model
+
+ARIMA models are powerful forecasting models, see the wikipedia page for a great introduction: https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average
+
+Here, we use "auto.arima", which automatically selects the best parameters
+
+```{r}
+model_aa = auto.arima(tsdata)
+summary(model_aa)
+```
+Let's plot the forecasted data (together with error bars)
+```{r}
+forecast_aa = forecast(model_aa, h=FORECAST_PERIOD)
+plot(forecast_aa)
+```
+## ETS Model
+
+The simple ARIMA model does not directly take the seasonality into account.
+
+Error/Trend/Seasonality models extract recurring sequences (Seasonality), global tendancy (Trend) and remaining noise (Error) and use these for forecasting.
+
+For each of these the forecast model will choose if each component is present or not.
+"N"=none, "A"=additive, "M"=multiplicative
+
+http://www.inside-r.org/packages/cran/forecast/docs/ets
+
+```{r}
+# ETS model can only handle frequency < 24 . For frequency > 24, we switch to STLF model
+if (TS_FREQUENCY > 24) {
+    model_ets = stlf(tsdata)
+} else {
+    model_ets = ets(tsdata)
+}
+summary(model_ets)
+```
+
+```{r}
+forecast_ets = forecast(model_ets, h=FORECAST_PERIOD)
+plot(forecast_ets)
+```
+## TBATS model
+Exponential smoothing state space model with Box-Cox transformation, ARMA errors, Trend and Seasonal components
+
+http://www.inside-r.org/packages/cran/forecast/docs/tbats
+
+```{r}
+model_tbats = tbats(tsdata)
+model_tbats
+```
+Let's plot how the TBATS model decomposed our data
+```{r}
+plot(model_tbats)
+```
+And plot the actual forecast
+```{r}
+forecast_tbats = forecast(model_tbats, h=FORECAST_PERIOD)
+plot(forecast_tbats)
+```
+## Comparing the models
+
+We use Akaike's information criterion to compare models
+
+Lower is better, close values mean models should be further compared
+
+https://en.wikipedia.org/wiki/Akaike_information_criterion
+
+```{r}
+# Note: if the ETS model was switched to STLF, the AIC is not available.
+
+aics = c(Auto.Arima = model_aa$aic,
+         ETS = model_ets$aic,
+         TBATS = model_tbats$AIC)
+barplot(aics, ylab="AIC", main="Model Comparison", col="light blue")
+```
