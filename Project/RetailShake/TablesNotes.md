@@ -1,8 +1,8 @@
-```SQL
+```MySQL
 DESCRIBE piwigo_retail_product_company;
 ``` 
 
-```CSV
+```
 product-company-store-id,varchar(130),NO,PRI,,""
 company-id,int,YES,MUL,,""
 internal-reference,varchar(30),NO,MUL,,""
