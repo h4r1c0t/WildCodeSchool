@@ -1,7 +1,8 @@
 # Non au SQL
 
 ## 1. Installe Robo 3T
-Check
+![img0](https://raw.githubusercontent.com/h4r1c0t/WildCodeSchool/master/Odyssey/NoSQL/img/0.png)
+
 
 ## 2. Crée une collection nommé “macollection” dans une base de données nommé “mabdd”
 ![img1](https://raw.githubusercontent.com/h4r1c0t/WildCodeSchool/master/Odyssey/NoSQL/img/1.png)
