@@ -8,7 +8,7 @@
 ![img1](https://raw.githubusercontent.com/h4r1c0t/WildCodeSchool/master/Odyssey/NoSQL/img/1.png)
 
 ## 3. Ajoute un document JSON selon le modèle suivant :
-```NoSQL
+```JSON
 {
 "cours" : "NoSQL",
 "compétences" : ["installation", "collection", "requête", "théorie"],
@@ -19,9 +19,13 @@
 }
 ```
 
+> ![img2](https://raw.githubusercontent.com/h4r1c0t/WildCodeSchool/master/Odyssey/NoSQL/img/2.png)
+
 ## 4. Importe la base de données restaurants.zip
+![img3](https://raw.githubusercontent.com/h4r1c0t/WildCodeSchool/master/Odyssey/NoSQL/img/3.png)
 
 ## 5. Ecris une requête qui compte le nombre de restaurants avec un grade A
+![img4](https://raw.githubusercontent.com/h4r1c0t/WildCodeSchool/master/Odyssey/NoSQL/img/4.png)
 
 ## 6. Ecris une requête qui trie tous les différents scores de restaurants en ordre décroissant
 
