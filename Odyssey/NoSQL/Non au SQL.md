@@ -7,7 +7,7 @@ Check
 ![img1](https://raw.githubusercontent.com/h4r1c0t/WildCodeSchool/master/Odyssey/NoSQL/img/1.png)
 
 ## 3. Ajoute un document JSON selon le modèle suivant :
-```
+```NoSQL
 {
 "cours" : "NoSQL",
 "compétences" : ["installation", "collection", "requête", "théorie"],
