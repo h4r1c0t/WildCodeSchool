@@ -31,6 +31,7 @@
 > ![img5](https://raw.githubusercontent.com/h4r1c0t/WildCodeSchool/master/Odyssey/NoSQL/img/5.png)
 
 ## 7. Ecris une requête qui trouve tous les restaurants dans lesquels les noms des villes commencent par la lettre “B”, “C” ou “D”, ou se terminent par une voyelle sauf “y”
+> ![img6](https://raw.githubusercontent.com/h4r1c0t/WildCodeSchool/master/Odyssey/NoSQL/img/6.png)
 
 ## 8. Ecris une requête qui affiche tous les restaurants si et seulement si le score est inférieur à 20 ou égale à 25, 30, 35 et 40 (n’oubliez pas de préciser que la vérification se fasse sur chaque instance)
 
