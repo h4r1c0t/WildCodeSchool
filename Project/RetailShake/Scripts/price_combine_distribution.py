@@ -70,10 +70,22 @@ fig1 = ff.create_distplot([df_price["price_after"]], ['Price'],
                           )
 
 fig1.update_layout(
-    title = {'text': 'Distribution des prix au sein de la gamme '
+    autosize = False,
+    width = 700,
+    height = 700,
+    margin = dict(
+        l = 50,
+        r = 50,
+        b = 100,
+        t = 100,
+        pad = 4
+    ), showlegend = False,
+    paper_bgcolor = 'rgba(0,0,0,0)',
+    plot_bgcolor = 'rgba(0,0,0,0)',
+    title = {'text': 'Distribution des prix au sein de la gamme<br> '
                      '<b>{}</b> de <b>{}</b>'.format(df_price.iloc[0, 1],
                                                      df_price.iloc[0, 0]),
-             'y': .995,
+             'y': .900,
              'x': .5,
              'xanchor': 'center',
              'yanchor': 'top'},
@@ -81,11 +93,13 @@ fig1.update_layout(
     yaxis_title = "Frequency",
     font = dict(
         family = "Quicksand, regular",
-        size = 18,
+        size = 16,
         color = "#7f7f7f")
 )
 
-fig1.show()
+fig1.update_yaxes(automargin=True)
+
+# fig1.show()
 
 #%% Figure 2
 
@@ -110,29 +124,43 @@ fig2.add_trace(
                                                                  df_price["gtin"],
                                                                  df_price["name"],
                                                                  df_price["change_date"])],
-           name = 'Price',
+           name = '',
            opacity = 0.5,
            marker_color = '#F2B705')
 )
 
 fig2.update_layout(
-    title = {'text': 'Distribution des prix au sein de la gamme '
+    autosize = False,
+    width = 700,
+    height = 700,
+    margin = dict(
+        l = 50,
+        r = 50,
+        b = 100,
+        t = 100,
+        pad = 4
+    ), showlegend = False,
+    paper_bgcolor = 'rgba(0,0,0,0)',
+    plot_bgcolor = 'rgba(0,0,0,0)',
+    title = {'text': 'Distribution des prix au sein de la gamme<br> '
                      '<b>{}</b> de <b>{}</b>'.format(df_price.iloc[0, 1],
                                                      df_price.iloc[0, 0]),
-             'y': .995,
+             'y': .900,
              'x': .5,
              'xanchor': 'center',
              'yanchor': 'top'},
-    yaxis_title = "Pricing",
+    xaxis_title = 'Pricing',
+    yaxis_title = "Frequency",
     font = dict(
         family = "Quicksand, regular",
-        size = 18,
+        size = 16,
         color = "#7f7f7f")
 )
 
 fig2.update_traces(orientation = 'h')
+fig2.update_yaxes(automargin=True)
 
-fig2.show()
+# fig2.show()
 
 #%% Edit the figures' x and y axes attributes to create subplots:
 
@@ -156,11 +184,11 @@ fig2.layout.yaxis2.update({'anchor': 'x2', 'domain': [0, .45]})
 
 #%% Combine the data and layout objects to create a figure
 
-fig = go.Figure()
-fig.add_traces([fig1.data[0], fig2.data[0]])
+fig3 = go.Figure()
+fig3.add_traces([fig1.data[0], fig2.data[0]])
 
-fig.layout.update(fig1.layout)
-fig.layout.update(fig2.layout)
+fig3.layout.update(fig1.layout)
+fig3.layout.update(fig2.layout)
 
-fig.show()
+# fig.show()
 

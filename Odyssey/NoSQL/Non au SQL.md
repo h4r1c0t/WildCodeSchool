@@ -60,8 +60,22 @@ db.getCollection('restaurants').find({
 > ![img7](https://raw.githubusercontent.com/h4r1c0t/WildCodeSchool/master/Odyssey/NoSQL/img/7.png)
 
 ## 9. Ecris une requête qui fait la somme du nombre de restaurants par type de cuisine
+```SQL
+-- QUERY
+db.restaurants.aggregate([
+    {"$group" : {_id:"$cuisine",
+        count:{$sum:1}}
+    }
+])
+```
+> ![img8](https://raw.githubusercontent.com/h4r1c0t/WildCodeSchool/master/Odyssey/NoSQL/img/8.png)
 
 ## 10. Ecris une requête qui ajoute le commentaire “Je gère le NoSQL” pour les boroughs dont le nom commence par “B”
+```SQL
+-- QUERY
+db.collection('restaurants').find({"borough": /^B.*/gi}).
+```
+> ![img9](https://raw.githubusercontent.com/h4r1c0t/WildCodeSchool/master/Odyssey/NoSQL/img/9.png)
 
 ## 11. Ecris une requête qui supprime la clé “adress” des restaurants qui ont un score supérieur à 25
 
