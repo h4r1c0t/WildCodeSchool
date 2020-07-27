@@ -16,6 +16,9 @@ from IPython.display import display
 # Ploting libraries
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
+import plotly.offline as py
+py.init_notebook_mode(connected=True)
 
 # Dashboard libraries
 import dash
+

@@ -4,5 +4,5 @@ r = requests.get(link)
 open('chinook.db', 'wb').write(r.content)
 
 # Create connector
-conn = sqlite3.connect('chinook.db')
+conn = sqlite3.connect('Odyssey/Checkpoint/#4_Final/Sujet1/datasets/chinook.db')
 cursor = conn.cursor()

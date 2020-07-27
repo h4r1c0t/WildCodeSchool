@@ -1,0 +1,33 @@
+/*GRAPHS - BOX*/
+.map{
+    /*border: 1px solid #283747;  !*remove this*!*/
+    /*padding: 1rem;*/
+    background-color: white;
+    height: 500px;  /*remove this*/
+    justify-content: center;
+}
+
+.graph{
+    /*border: 1px solid #283747;  !*remove this*!*/
+    margin: 1rem;
+    width: 100%;
+    height: 100%;
+    /*background-color: white;*/
+}
+
+/*BOXS*/
+.two_boxs{
+    /*border: 1px solid #283747;  !*remove this*!*/
+    display: flex;
+    justify-content: space-between;
+    /*height: 50em;  !*remove this*!*/
+}
+
+.title_box{
+    background-color: white;
+    border: 0.25rem solid #FF5755;
+    border-radius: 0.5rem;
+    margin-bottom: 5em;
+    margin-top: 5em;
+
+}
