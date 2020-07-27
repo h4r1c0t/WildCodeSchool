@@ -8,7 +8,15 @@
 header{
     height: 5%;
     border-bottom: 2px solid #FF5755;
+    align-content: center;
 }
+
+header img{
+    text-align: left;
+    max-width: 10%;
+    max-height: 10%;
+}
+
 footer{
     margin-top: 5%;
     text-align: center;

@@ -3,8 +3,6 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output, State
-import dash_bootstrap_components as dbc
 
 #-- EXECUTE ALL THE FUNCTION FOR THE DASHBOARD CONTENT
 ##- IMPORT
@@ -29,6 +27,10 @@ app.title = "WCS - CP#4"
 app.layout = html.Div([
     #-- HEADER
     html.Header([
+        html.Img(
+            src='https://res.cloudinary.com/wildcodeschool/image/upload/c_fill,h_50/v1/static/irjoy97aq0eol8bf6959',
+            alt='WCS_logo.png'
+        ),
         dcc.Markdown(
             "# Welcome to 4th Checkpoint dashboard !"
         )
@@ -93,7 +95,7 @@ app.layout = html.Div([
             "## Mrs Irma crystal ball"
         )
     ], className = 'title_box'),
-
+    ##- COMMENT
     html.Div([
         dcc.Markdown(
             """
@@ -104,6 +106,7 @@ app.layout = html.Div([
         )
     ]),
 
+    #-- FOOTER
     html.Footer([
         dcc.Markdown(
             """
@@ -113,9 +116,7 @@ app.layout = html.Div([
         )
     ])
 
-
 ], className = 'page')
-
 
 if __name__ == '__main__':
     app.run_server()
