@@ -90,15 +90,25 @@ app.layout = html.Div([
     #-- SECTION 3
     html.Div([
         dcc.Markdown(
-            "## Crystal ball"
+            "## Mrs Irma crystal ball"
         )
     ], className = 'title_box'),
+
+    html.Div([
+        dcc.Markdown(
+            """
+            ### This part will coming..
+            ### soon..?
+            """,
+            className = 'comment_box'
+        )
+    ]),
 
     html.Footer([
         dcc.Markdown(
             """
             ___
-            _This dashboard is made with **Dash®** and ❤ by **S. Vanstavel** for the **WCS last checkpoint**_
+            _This dashboard is made with **Dash®** and ❤ by **Sébastien .V** for the **WCS last checkpoint**_
             """
         )
     ])

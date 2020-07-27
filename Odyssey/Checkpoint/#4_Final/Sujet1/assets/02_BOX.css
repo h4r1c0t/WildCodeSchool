@@ -31,3 +31,12 @@
     margin-top: 5em;
 
 }
+
+.comment_box{
+    border-top: 1px solid #283747;
+    border-bottom: 1px solid #283747;
+    background-color: white;
+    margin-bottom: 5em;
+    margin-top: 5em;
+    padding: 5em;
+}
