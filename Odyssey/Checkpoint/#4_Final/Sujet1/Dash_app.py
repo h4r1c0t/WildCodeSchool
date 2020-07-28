@@ -119,4 +119,4 @@ app.layout = html.Div([
 ], className = 'page')
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(4545)
